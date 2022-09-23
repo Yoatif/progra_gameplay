@@ -1,0 +1,65 @@
+<!--
+    le head est l'en tête du document qui contient les informations permettant au navigateur de lire correctement la page HTML
+-->
+<head>
+    <!-- meta charset UTF-8 définit le mode d'encodage de la page il s'agit la d'un standard -->
+    <meta charset="UTF-8">
+
+    <!-- Title permet de modifier le nom afficher sur l'onglet de la page-->
+    <title>Ceci est un titre !</title>
+    
+    <!-- link rel   permet de d'indiquer le ficher CSS dans le dossier ou ce trouve ce dernier
+    href indique le fichier -->
+    <link rel="stylesheet" href="test.css" />
+
+    <!-- script permet d'indiquer l'emplacement du fichier JavaScript (JS)-->
+    <script type="text/javascript" src="test.js" async></script>
+
+    <!-- !DOCTYPE html indique au navigateur la version  HTML de la page-->
+    <!DOCTYPE html>
+
+
+</head>
+
+<!--
+    le body contient les informations contenu dans la page web que l'on affiche
+-->
+
+<body>
+    <!-- div introduit une division et applique un saut de ligne-->
+    <div>
+        <!-- hX définit un titre dans le contenu textuel. la valeur X va de 1 (pour le plus grand) à 6 (pour le plus petit)
+        br permet le saut de ligne-->
+        <h1>très grand</h1><br><h2>un peu moins grand</h2><br><h3>moins grand</h3><br><h4>sa commence a rétrécir</h4><br><h5>encore</h5><br>
+        <h6>c'est le plus petit</h6> 
+    </div>
+    <div>
+        <!-- p définit un paragraphe
+        b met le texte en gras
+        i met le texte en italique-->
+        <p><b>ceci est</b><br><i>un paragraphe</i><br><em>miaouw</em></p>
+    </div>
+    <div>
+    <!--différent type de liste : 
+    -->
+    <ol><li>ceci</li><li>est</li><li>une</li><li>liste</li></ol>
+    <ul><li>et</li><li>une</li><li>autre</li></ul>
+    </div>
+    <div>
+
+        <!-- bouton qui envois sur un lien-->
+        <input type=button onclick=window.location.href='https://perdu.com'; value="photo sexy de José-Daniel" />
+        <input type="checkbox" name="avoue tu as cliquer le lien">
+
+    </div>
+
+    <div>
+        <p>paragraphe</p>
+    </div>
+    <div>
+        <img src="https://ikonal.com/wp-content/uploads/2021/03/100-chats-1662031-1-700x375.jpg" alt="message au suvol"
+    </div>
+
+
+
+</body>
