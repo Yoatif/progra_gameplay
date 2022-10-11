@@ -1,17 +1,17 @@
 body {
-	background-image: url("images/asset/BG/carte_combat3.png");
+	background-image: url("asset/test.png");
 	background-size:cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
 
 header {
-	background-color:darkcyan;
+	background-color:rgb(70, 110, 255);
 	color:white;
 	border-style:solid;
 	border-width: 5px;;
 	border-radius:5px;
-	border-color:wheat;
+	border-color:rgb(255, 255, 255);
 	position: fixed;
 	margin-right: 5%;
 	margin-left: 5%;
@@ -71,7 +71,7 @@ header {
 
 #assaHPA, #mageHPA, #archerHPA, #musicienHPA {
 	position: relative;
-	background-color:darkcyan;
+	background-color:rgb(27, 24, 123);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;

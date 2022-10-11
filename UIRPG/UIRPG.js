@@ -381,15 +381,15 @@ function selectionCible() {
 }
 
 // changer le message en début de combat 
-message.innerHTML= "Récupèrer les cadeaux qu'il à volés";
+//message.innerHTML= "Récupèrer les cadeaux qu'il à volés";
 
-function Attack (attackButton)
+//function Attack (attackButton)
 
-AttackButton.onclick = function(){
+/*AttackButton.onclick = function(){
   //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
   //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
   AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
-}
+}*/
 
 /*function GetEnnemyProtected (id) {
   case 1 :
@@ -404,7 +404,7 @@ AttackButton.onclick = function(){
   case 4: 
     return ennemy3Protected*/
     
-function AttackEnnemy(dammageAmount,ennemyProtected) {
+/*function AttackEnnemy(dammageAmount,ennemyProtected) {
   if (Protected == true) {
     return;//quitte la fonction
   }
@@ -426,5 +426,4 @@ function AttackEnnemy(dammageAmount,ennemyProtected) {
   function EnnemyTurn();
   //Turn of the ennemy, ennemyProtected is reset and the ennemy attacks
  
-}
-
+};*/
