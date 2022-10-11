@@ -1,92 +1,67 @@
 <!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<link rel="stylesheet" href="style.css" >
+		<title>UI Baptiste CARION</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="UI.js"></script> 
+	</head>
+	
 
-<head>
-    <title>santa fight</title>
-    <link rel="stylesheet" href="test.css" />
-    <script type="text/javascript" src="UIRPG.js" async></script>
-</head>
+	<header>
+		<div id="combatLog">
+			Le combat a commencé !
+		</div>
 
-<body>
-    <div class="ensemble">
-        <!--apparition message début combat-->
-        <div id="msg1">
-            <h1>Le père Noël vous agresse,</h1>
-        </div>
+	</header>
+	
+	<body onload="initialisation()">
 
-        <!--img-->
-        <div class="img">
-            <div class="img_adv">
-                <div class="img_boss"><input type="image" alt="Nicolas the renegade" src="Santa.png"> </img></div>
-                <div class="img_miniboss"><input type="image" alt="Knutallux" src="monstre.png"> </img></div>
-                <div class="img_rouge"><input type="image" src="nain-rouge.png" alt="Lutin rouge"> </input></div>
-                <div class="img_vert"><input type="image" src="nain-vert.png" alt="Lutin vert"> </input></div>
-            </div>
-            <div class="img_ally">
-                <div id="img_Dipsy"><img src="bibi.png" alt="Dipsy"> </img></div>
-                <div id="img_Inox"><img src="musicien.png" alt="Inox"> </img></div>
-                <div id="img_Di4bolic"><img src="di4bolic.png" alt="Di4bolic"> </img></div>
-                <div id="img_Kirryu"><img src="kirryu.png" alt="Kirryu"> </img></div>
-            </div>
-        </div>
-        <div class=battle_info>
-            <!--Enemies-->
-            <div class="adv_stats">
-                <div id="boss">
-                    <h4>Nicolas the renegade</h4>
-                    <p id=hp_boss>100/100</p>
-                </div>
-                <div id="miniboss">
-                    <h4>Knutallux</h4>
-                    <p id=hp_miniboss>100/100</p>
-                </div>
-                <div id="monstre1">
-                    <h4>Lutin rouge</h4>
-                    <p id=hp_monstre1>100/100</p>
-                </div>
-                <div id="monstre2">
-                    <h4>Lutin vert</h4>
-                    <p id=hp_monstre2>100/100</p>
-                </div>
-            </div>
-           
+		<div class="monstres">			
+			<div id="darkherald">
+				<p id="darkHeraldHP">PV : 140/140</p>
+				<img src="images/monster/darkHerald.png" id="darkheraldImg" onmouseover="afficherHP('darkHeraldHP')" onmouseout="cacherHP('darkHeraldHP')"></img>
+			</div>
+			<div id="abyssun">
+				<p id="abyssunHP">PV : 80/80</p>
+				<img src="images/monster/abyssalCrawler.png" id="abyssunImg" onmouseover="afficherHP('abyssunHP')" onmouseout="cacherHP('abyssunHP')"></img>
+			</div>
+			<div id="abyssdeux">
+				<p id="abyssdeuxHP">PV : 80/80</p>
+				<img src="images/monster/abyssalCrawler.png" id="abyssdeuxImg" onmouseover="afficherHP('abyssdeuxHP')" onmouseout="cacherHP('abyssdeuxHP')"></img>
+			</div>
+		</div>
+		
+		<div class="hero">			
+			<div id="redTemplar">
+				<p id="redTemplarHPM">PV : 40/40<br>PM : 20/20</p>
+				<img src="images/hero/redTemplar.png" id="redTemplarImg"></img>
+			</div>
+			<div id="blueTemplar">
+				<p id="blueTemplarHPM">PV : 50/50<br>PM : 10/10</p>
+				<img src="images/hero/blueTemplar.png" id="blueTemplarImg"></img>
+			</div>
+			<div id="greenTemplar">
+				<p id="greenTemplarHPM">PV : 30/30<br>PM : 30/30</p>
+				<img src="images/hero/greenTemplar.png" id="greenTemplarImg"></img>
+			</div>
+			<div id="blackTemplar">
+				<p id="blackTemplarHPM">PV : 40/40<br>PM : 30/30</p>
+				<img src="images/hero/blackTemplar.png" id="blackTemplarImg"></img>
+			</div>
+		</div>
+	
+	</body>
 
-
-            <!--Action-->
-            <div class="action">
-                <div id="att">
-                    <button id="button1" type="button">attaquer</button>
-                </div>
-                <div id=Spé>
-                    <button id="button2" type="button">spécial</button>
-                </div>
-                <div id=protect>
-                    <button id="button3" type="button">Défense</button>
-                </div>                
-            </div>
-
-            <!--team_player-->
-            <div class="team">
-                <div id="hero1">
-                    <h4>Dipsy</h4>
-                    <p id=hp_hero1>100/100</p>
-                    <p id=mp_hero1>100/100</p>
-                </div>
-                <div id="hero2">
-                    <h4>Inox</h4>
-                    <p id=hp_hero2>100/100</p>
-                    <p id=mp_hero2>100/100</p>
-                </div>
-                <div id="hero3">
-                    <h4>Di4bolic</h4>
-                    <p id=hp_hero3>100/100</p>
-                    <p id=mp_hero3>100/100</p>
-                </div>
-                <div id="hero4">
-                    <h4>Kirryu</h4>
-                    <p id=hp_hero4>100/100</p>
-                    <p id=mp_hero4>100/100</p>
-                </div>
-            </div>
-        </div>
-    </div>  
-</body>
+	<footer>
+		<div id="debutround">
+			<input type="button" onclick="round()" value="Debut du nouveau round !">
+		</div>
+		<div id="targetselect">
+			<input type="button" id="darkHeraldButton" onclick="targetSelect(0)" value="Sombre Héraut">
+			<input type="button" id="abyssunButton" onclick="targetSelect(1)" value="Monstre abyssale (1)">
+			<input type="button" id="abyssdeuxButton" onclick="targetSelect(2)" value="Monstre abyssale (2)">
+		</div>
+	</footer>	
+</html>

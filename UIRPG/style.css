@@ -1,0 +1,140 @@
+body {
+	background-image: url("images/BG/battleback6.png");
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+header {
+	background-color:darkcyan;
+	color:white;
+	border-style:solid;
+	border-width: 5px;;
+	border-radius:5px;
+	border-color:wheat;
+	position: fixed;
+	margin-right: 5%;
+	margin-left: 5%;
+	width: 90%;
+	text-align:center;
+	font-weight: bold;
+}
+
+#combatLog {
+	margin-top : 5px;
+	margin-bottom : 5px;
+}
+
+#darkherald{
+	position: fixed;
+	top:50%;
+	left:25%;
+}
+
+#darkheraldImg {
+	height:192px;
+	width:192px;
+}
+
+#abyssun {
+	position: fixed;
+	top:35%;
+	left:15%;
+}
+
+#abyssdeux {
+	position: fixed;
+	top:65%;
+	left:15%;
+}
+
+#abyssunImg, #abyssdeuxImg {
+	height:180px;
+	width:180px;
+}
+
+#blueTemplarImg, #redTemplarImg, #greenTemplarImg{
+	height:150px;
+	width:150px;
+}
+
+#blueTemplarHPM, #redTemplarHPM, #greenTemplarHPM, #blackTemplarHPM {
+	position: relative;
+	background-color:darkcyan;
+	color:white;
+	border-style:solid;
+	border-width: 3px;;
+	border-radius:5px;
+	border-color:wheat;
+	text-align: center;
+}
+
+#darkHeraldHP, #abyssunHP, #abyssdeuxHP {
+	position: relative;
+	background-color:darkred;
+	color:white;
+	border-style:solid;
+	border-width: 3px;;
+	border-radius:5px;
+	border-color:wheat;
+	text-align: center;
+	visibility: hidden;
+}
+
+#blueTemplar {
+	position: fixed;
+	top:50%;
+	right:30%;
+}
+
+#redTemplar {
+	position: fixed;
+	top:30%;
+	right:25%;
+}
+
+#greenTemplar {
+	position: fixed;
+	top:70%;
+	right:25%;
+}
+
+#blackTemplar {
+	position: fixed;
+	top:45%;
+	right:12%;
+}
+
+#blackTemplarImg, img.templar{
+	height:200px;
+	width:200px;
+}
+
+footer {
+	position: fixed;
+	bottom: 5%;
+	margin-right: 5%;
+	margin-left: 5%;
+	width : 90%;
+}
+
+#debutround {
+	text-align: center;
+}
+
+#targetselect {
+	position: relative;
+	background-color:rgb(128, 56, 15);
+	color:white;
+	border-style:solid;
+	border-width: 3px;;
+	border-radius:5px;
+	left:5%;
+	width:390px;
+	text-align: center;
+	border-color:wheat;
+}
+
+#darkHeraldButton {
+	color:red;
+}

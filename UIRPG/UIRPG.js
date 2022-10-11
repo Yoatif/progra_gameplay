@@ -67,15 +67,14 @@ var defeat = (bibiHP<=0 && inoxHP<=0 && di4boHP<=0 && kirryuHP<=0);
 message.innerHTML= "Récupèrer les cadeaux qu'il à volés";
 
 function Attack (attackButton)
-    
 
 AttackButton.onclick = function(){
-  //GetEnnemyProtected(ennemyTarget) is a function that returns the value of ennemy protected based on id
+  //GetEnnemyProtected(ennemyTarget) is a function that   returns the value of ennemy protected based on id
   //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
   AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
 }
 
-function GetEnnemyProtected (id) {
+/*function GetEnnemyProtected (id) {
   case 1 :
     return ennemy1Protected;
   
@@ -86,29 +85,29 @@ function GetEnnemyProtected (id) {
     return ennemy3Protected;
   
   case 4: 
-    return ennemy3Protected
+    return ennemy3Protected*/
     
 function AttackEnnemy(dammageAmount,ennemyProtected) {
-  if (ennemyProtected == true) {
+  if (Protected == true) {
     return;//quitte la fonction
   }
   //change d'ennemie selon la séléction
   switch (ennemyTarget) {
     case 1 :
-      bossHP -= (dammageAmount-res);
+      bossHP -= dammageAmount;
       break;
     case 2 :
-      ennemy2Hp -= (dammageAmount-res);
+      ennemy2Hp -= dammageAmount;
     case 3 :
-      hpRouge -= (dammageAmount-res);
+      hpRouge -= dammageAmount;
     case 4:
-      hpVert -= (dammageAmount-res);
+      hpVert -= dammageAmount;
 
       break;
   }
 
-  function S
+  function EnnemyTurn();
   //Turn of the ennemy, ennemyProtected is reset and the ennemy attacks
-  EnnemyTurn();
+ 
 }
 
