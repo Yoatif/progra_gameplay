@@ -1,5 +1,5 @@
 body {
-	background-image: url("images/asset/BG/battleback6.png");
+	background-image: url("images/asset/BG/carte_combat3.png");
 	background-size:cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -31,6 +31,17 @@ header {
 	left:25%;
 }
 
+#darkherald{
+	position: fixed;
+	top:50%;
+	left:25%;
+}
+
+#darkheraldImg {
+	height:192px;
+	width:192px;
+}
+
 #darkheraldImg {
 	height:192px;
 	width:192px;
@@ -58,7 +69,7 @@ header {
 	width:150px;
 }
 
-#blueTemplarHPM, #redTemplarHPM, #greenTemplarHPM, #blackTemplarHPM {
+#blueTemplarHPA, #redTemplarHPA, #greenTemplarHPA, #blackTemplarHPA {
 	position: relative;
 	background-color:darkcyan;
 	color:white;
@@ -69,7 +80,7 @@ header {
 	text-align: center;
 }
 
-#darkHeraldHP, #abyssunHP, #abyssdeuxHP {
+#darkHeraldHP,darkHeraldHP, #abyssunHP, #abyssdeuxHP {
 	position: relative;
 	background-color:darkred;
 	color:white;
@@ -133,6 +144,10 @@ footer {
 	width:390px;
 	text-align: center;
 	border-color:wheat;
+}
+
+#darkHeraldButton {
+	color:red;
 }
 
 #darkHeraldButton {

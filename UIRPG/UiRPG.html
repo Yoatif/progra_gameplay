@@ -2,10 +2,10 @@
 <html lang="fr">
 	<head>
 		<link rel="stylesheet" href="style.css" >
-		<title>UI Baptiste CARION</title>
+		<title>UIRPG RETIF Yoann</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="UI.js"></script> 
+		<script src="UIRPG.js"></script> 
 	</head>
 	
 
@@ -15,40 +15,44 @@
 		</div>
 
 	</header>
-	
-	<body onload="initialisation()">
+	<!-- add body -> onload="initialisation()"-->
+	<body>
 
-		<div class="monstres">			
+		<!--<div class="monstres">			
 			<div id="darkherald">
 				<p id="darkHeraldHP">PV : 140/140</p>
-				<img src="images/monster/darkHerald.png" id="darkheraldImg" onmouseover="afficherHP('darkHeraldHP')" onmouseout="cacherHP('darkHeraldHP')"></img>
+				<img src="images/asset/monster/darkHerald.png" id="darkheraldImg" onmouseover="afficherHP('darkHeraldHP')" onmouseout="cacherHP('darkHeraldHP')"></img>
+			</div>
+			<div id="darkherald">
+				<p id="darkHeraldHP">PV : 140/140</p>
+				<img src="images/asset/monster/darkHerald.png" id="darkheraldImg" onmouseover="afficherHP('darkHeraldHP')" onmouseout="cacherHP('darkHeraldHP')"></img>
 			</div>
 			<div id="abyssun">
 				<p id="abyssunHP">PV : 80/80</p>
-				<img src="images/monster/abyssalCrawler.png" id="abyssunImg" onmouseover="afficherHP('abyssunHP')" onmouseout="cacherHP('abyssunHP')"></img>
+				<img src="images/asset/monster/abyssalCrawler.png" id="abyssunImg" onmouseover="afficherHP('abyssunHP')" onmouseout="cacherHP('abyssunHP')"></img>
 			</div>
 			<div id="abyssdeux">
 				<p id="abyssdeuxHP">PV : 80/80</p>
-				<img src="images/monster/abyssalCrawler.png" id="abyssdeuxImg" onmouseover="afficherHP('abyssdeuxHP')" onmouseout="cacherHP('abyssdeuxHP')"></img>
+				<img src="images/asset/monster/abyssalCrawler.png" id="abyssdeuxImg" onmouseover="afficherHP('abyssdeuxHP')" onmouseout="cacherHP('abyssdeuxHP')"></img>
 			</div>
-		</div>
+		</div>-->
 		
 		<div class="hero">			
 			<div id="redTemplar">
-				<p id="redTemplarHPM">PV : 40/40<br>PM : 20/20</p>
-				<img src="images/hero/redTemplar.png" id="redTemplarImg"></img>
+				<p id="redTemplarHPA">PV : 40/40<br>PA : 20/20</p>
+				<img src="images/asset/hero/redTemplar.png" id="redTemplarImg"></img>
 			</div>
 			<div id="blueTemplar">
-				<p id="blueTemplarHPM">PV : 50/50<br>PM : 10/10</p>
-				<img src="images/hero/blueTemplar.png" id="blueTemplarImg"></img>
+				<p id="blueTemplarHPA">PV : 50/50<br>PA : 10/10</p>
+				<img src="images/asset/hero/blueTemplar.png" id="blueTemplarImg"></img>
 			</div>
 			<div id="greenTemplar">
-				<p id="greenTemplarHPM">PV : 30/30<br>PM : 30/30</p>
-				<img src="images/hero/greenTemplar.png" id="greenTemplarImg"></img>
+				<p id="greenTemplarHPA">PV : 30/30<br>PA : 30/30</p>
+				<img src="images/asset/hero/greenTemplar.png" id="greenTemplarImg"></img>
 			</div>
 			<div id="blackTemplar">
-				<p id="blackTemplarHPM">PV : 40/40<br>PM : 30/30</p>
-				<img src="images/hero/blackTemplar.png" id="blackTemplarImg"></img>
+				<p id="blackTemplarHPA">PV : 40/40<br>PA : 30/30</p>
+				<img src="images/asset/hero/blackTemplar.png" id="blackTemplarImg"></img>
 			</div>
 		</div>
 	
@@ -59,6 +63,7 @@
 			<input type="button" onclick="round()" value="Debut du nouveau round !">
 		</div>
 		<div id="targetselect">
+			<input type="button" id="darkHeraldButton" onclick="targetSelect(0)" value="Sombre Héraut">
 			<input type="button" id="darkHeraldButton" onclick="targetSelect(0)" value="Sombre Héraut">
 			<input type="button" id="abyssunButton" onclick="targetSelect(1)" value="Monstre abyssale (1)">
 			<input type="button" id="abyssdeuxButton" onclick="targetSelect(2)" value="Monstre abyssale (2)">
