@@ -64,12 +64,12 @@ header {
 	width:180px;
 }
 
-#blueTemplarImg, #redTemplarImg, #greenTemplarImg{
+#assaImg, #mageImg, #archerImg{
 	height:150px;
 	width:150px;
 }
 
-#blueTemplarHPA, #redTemplarHPA, #greenTemplarHPA, #blackTemplarHPA {
+#assaHPA, #mageHPA, #archerHPA, #musicienHPA {
 	position: relative;
 	background-color:darkcyan;
 	color:white;
@@ -92,31 +92,31 @@ header {
 	visibility: hidden;
 }
 
-#blueTemplar {
+#assa {
 	position: fixed;
 	top:50%;
 	right:30%;
 }
 
-#redTemplar {
+#mage {
 	position: fixed;
 	top:30%;
 	right:25%;
 }
 
-#greenTemplar {
+#archer {
 	position: fixed;
 	top:70%;
 	right:25%;
 }
 
-#blackTemplar {
+#musicien {
 	position: fixed;
 	top:45%;
 	right:12%;
 }
 
-#blackTemplarImg, img.templar{
+#musicienImg, img.templar{
 	height:200px;
 	width:200px;
 }

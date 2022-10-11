@@ -1,17 +1,17 @@
-var blueTemplarHP;
-var blueTemplarPA;
-var blueTemplarArmor;
-var blueTemplarAttack;
-var blueTemplarStunned;
+var assaHP;
+var assaPA;
+var assaArmor;
+var assaAttack;
+var assaStunned;
 var mageHP;
 var magePA;
 var mageArmor;
 var mageAttack;
 var mageStunned;
-var greenTemplarHP;
-var greenTemplarPA;
-var blackTemplarHP;
-var blackTemplarPA;
+var archerHP;
+var archerPA;
+var musicienHP;
+var musicienPA;
 var darkHeraldHP;
 var abyssunHP;
 var abyssdeuxHP;
@@ -25,26 +25,26 @@ var monsterTarget;
 
 //Fonction d'initialisation des variables
 function initialisation() {
-    blueTemplarHP = 50;
-    blueTemplarPA = 10;
-    blueTemplarArmor = 10;
-    blueTemplarAttack = 10;
-    blueTemplarStunned = false;   
+    assaHP = 50;
+    assaPA = 10;
+    assaArmor = 10;
+    assaAttack = 10;
+    assaStunned = false;   
     mageHP = 40;
     magePA = 20;
     mageArmor = 5;
     mageAttack = 15;
     mageStunned = false;
-    greenTemplarHP = 30;
-    greenTemplarPA = 30;
-    greenTemplarArmor = 10;
-    greenTemplarAttack = 15;
-    greenTemplarStunned = false;
-    blackTemplarHP = 40;
-    blackTemplarPA = 30;
-    blackTemplarArmor = 10;
-    blackTemplarAttack = 15;
-    blackTemplarStunned = false;
+    archerHP = 30;
+    archerPA = 30;
+    archerArmor = 10;
+    archerAttack = 15;
+    archerStunned = false;
+    musicienHP = 40;
+    musicienPA = 30;
+    musicienArmor = 10;
+    musicienAttack = 15;
+    musicienStunned = false;
     darkHeraldHP = 140;
     abyssunHP = 80;
     abyssdeuxHP = 80;
@@ -58,12 +58,12 @@ function initialisation() {
 
 function round() {
   if (compteurRound == 0) {
-      document.getElementById('blueTemplarHPA').style.color='black';
-      document.getElementById('blackTemplarHPA').style.color='white';
-      if (!blueTemplarStunned && blueTemplarHP > 0) {
-          tourTemplier("bleu", blueTemplarAttack, blueTemplarPA);    
+      document.getElementById('assaHPA').style.color='black';
+      document.getElementById('musicienHPA').style.color='white';
+      if (!assaStunned && assaHP > 0) {
+          tourTemplier("bleu", assaAttack, assaPA);    
       }
-      else if (blueTemplarHP <= 0) {
+      else if (assaHP <= 0) {
           document.getElementById("combatLog").innerHTML = "Le templier bleu est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
       }
       else {
@@ -72,7 +72,7 @@ function round() {
   }
   else if (compteurRound == 1) {
       document.getElementById('mageHPA').style.color='black';
-      document.getElementById('blueTemplarHPA').style.color='white';
+      document.getElementById('assaHPA').style.color='white';
       if (!mageStunned && mageHP > 0) {
           tourTemplier("rouge", mageAttack, magePA);
       }
@@ -84,12 +84,12 @@ function round() {
       }
   }
   else if (compteurRound == 2) {
-      document.getElementById('greenTemplarHPA').style.color='black';
+      document.getElementById('archerHPA').style.color='black';
       document.getElementById('mageHPA').style.color='white';
-      if (!greenTemplarStunned && greenTemplarHP > 0) {
-          tourTemplier("vert", greenTemplarAttack, greenTemplarPA);
+      if (!archerStunned && archerHP > 0) {
+          tourTemplier("vert", archerAttack, archerPA);
       }
-      else if (greenTemplarHP <= 0) {
+      else if (archerHP <= 0) {
           document.getElementById("combatLog").innerHTML = "Le templier vert est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
       }
       else {
@@ -97,12 +97,12 @@ function round() {
       }
   }
   else if (compteurRound == 3) {
-      document.getElementById('blackTemplarHPA').style.color='black';
-      document.getElementById('greenTemplarHPA').style.color='white';
-      if (!blackTemplarStunned && blackTemplarHP > 0) {
-          tourTemplier("noir", blackTemplarAttack, blackTemplarPA);
+      document.getElementById('musicienHPA').style.color='black';
+      document.getElementById('archerHPA').style.color='white';
+      if (!musicienStunned && musicienHP > 0) {
+          tourTemplier("noir", musicienAttack, musicienPA);
       }
-      else if (blackTemplarHP <= 0) {
+      else if (musicienHP <= 0) {
           document.getElementById("combatLog").innerHTML = "Le templier noir est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
       }
       else {
@@ -110,7 +110,7 @@ function round() {
       }
   }
   else if (compteurRound == 4) {
-      document.getElementById('blackTemplarHPA').style.color='white';
+      document.getElementById('musicienHPA').style.color='white';
       monsterStrikeBack();
   }
 }
@@ -121,16 +121,16 @@ function tourTemplier(templarName, templarAttack, templarPA) {
 
 function templarDefend(templarName) {
   if (templarName == "bleu") {
-      blueTemplarArmor = blueTemplarArmor *2
+      assaArmor = assaArmor *2
   }
   else if (templarName == "rouge") {
       mageArmor = mageArmor *2
   }
   else if (templarName == "vert") {
-      greenTemplarArmor = greenTemplarArmor *2
+      archerArmor = archerArmor *2
   }
   else {
-      blackTemplarArmor = blackTemplarArmor *2
+      musicienArmor = musicienArmor *2
   }
   document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " se prépare à se défendre !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
 }
@@ -140,11 +140,11 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+templarName+"\","+templarAttack+")' value='Attaque'> <input type='button' onclick='templarDefend(\""+templarName+"\")' value='Defense'>";
   }
   else if (templarName == "bleu") {
-      blueTemplarArmor = blueTemplarArmor * 3;
+      assaArmor = assaArmor * 3;
       mageArmor = mageArmor * 3;
-      greenTemplarArmor = greenTemplarArmor * 3;
-      blackTemplarArmor = blackTemplarArmor * 3;
-      blueTemplarPA = blueTemplarPA - 5;
+      archerArmor = archerArmor * 3;
+      musicienArmor = musicienArmor * 3;
+      assaPA = assaPA - 5;
       updateAllHPA();
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " protège ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
@@ -154,11 +154,11 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " attaque aveuglément !<br> <input type='button' onclick='monstreBlessure(\""+templarName+"\","+templarAttack*3+")' value='NEXT'>";
   }
   else if (templarName == "vert") {
-      if (blueTemplarHP < 50 && blueTemplarHP + 15 < 50) {
-          blueTemplarHP = blueTemplarHP + 15;
+      if (assaHP < 50 && assaHP + 15 < 50) {
+          assaHP = assaHP + 15;
       }
-      else if (blueTemplarHP < 50) {
-          blueTemplarHP = 50;
+      else if (assaHP < 50) {
+          assaHP = 50;
       }
       if (mageHP < 40 && mageHP + 15 < 40) {
           mageHP = mageHP + 15;
@@ -166,27 +166,27 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
       else if (mageHP < 40) {
           mageHP = 40;
       }
-      if (greenTemplarHP < 30 && greenTemplarHP + 15 < 30) {
-          greenTemplarHP = greenTemplarHP + 15;
+      if (archerHP < 30 && archerHP + 15 < 30) {
+          archerHP = archerHP + 15;
       }
-      else if (greenTemplarHP < 30) {
-          greenTemplarHP = 30;
+      else if (archerHP < 30) {
+          archerHP = 30;
       }
-      if (blackTemplarHP < 40 && blackTemplarHP + 15 < 40) {
-          blackTemplarHP = blackTemplarHP + 15;
+      if (musicienHP < 40 && musicienHP + 15 < 40) {
+          musicienHP = musicienHP + 15;
       }
-      else if (blackTemplarHP < 40) {
-          blackTemplarHP = 40;
+      else if (musicienHP < 40) {
+          musicienHP = 40;
       }
-      greenTemplarPA = greenTemplarPA - 5;
+      archerPA = archerPA - 5;
       updateAllHPA();
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " joint les mains en prière et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
-      blackTemplarPA = blackTemplarPA - 5;
-      abyssdeuxHP = abyssdeuxHP - blackTemplarAttack;
-      abyssunHP = abyssunHP - blackTemplarAttack;
-      darkHeraldHP = darkHeraldHP - blackTemplarAttack;
+      musicienPA = musicienPA - 5;
+      abyssdeuxHP = abyssdeuxHP - musicienAttack;
+      abyssunHP = abyssunHP - musicienAttack;
+      darkHeraldHP = darkHeraldHP - musicienAttack;
       updateAllHPA();
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
@@ -206,24 +206,24 @@ function returnToStartingState() {
 }
 
 function updateAllHPA() {
-  document.getElementById("blueTemplarHPA").innerHTML = "PV : " + blueTemplarHP + "/50<br>PA : " + blueTemplarPA + "/10";
+  document.getElementById("assaHPA").innerHTML = "PV : " + assaHP + "/50<br>PA : " + assaPA + "/10";
   document.getElementById("mageHPA").innerHTML = "PV : " + mageHP + "/40 <br>PA : " + magePA + "/20";
-  document.getElementById("greenTemplarHPA").innerHTML = "PV : " + greenTemplarHP + "/30<br>PA : " + greenTemplarPA + "/30";
-  document.getElementById("blackTemplarHPA").innerHTML = "PV : " + blackTemplarHP + "/40<br>PA : " + blackTemplarPA + "/30";
+  document.getElementById("archerHPA").innerHTML = "PV : " + archerHP + "/30<br>PA : " + archerPA + "/30";
+  document.getElementById("musicienHPA").innerHTML = "PV : " + musicienHP + "/40<br>PA : " + musicienPA + "/30";
   document.getElementById("darkHeraldHP").innerHTML = "PV : " + darkHeraldHP + "/140";
   document.getElementById("abyssunHP").innerHTML = "PV : " + abyssunHP + "/80";
   document.getElementById("abyssdeuxHP").innerHTML = "PV : " + abyssdeuxHP + "/80";
-  if (blueTemplarHP < 1) {
-      document.getElementById('blueTemplar').style.visibility='hidden';
+  if (assaHP < 1) {
+      document.getElementById('assa').style.visibility='hidden';
   }
   if (mageHP < 1) {
       document.getElementById('mage').style.visibility='hidden';
   }
-  if (greenTemplarHP < 1) {
-      document.getElementById('greenTemplar').style.visibility='hidden';
+  if (archerHP < 1) {
+      document.getElementById('archer').style.visibility='hidden';
   }
-  if (blackTemplarHP < 1) {
-      document.getElementById('blackTemplar').style.visibility='hidden';
+  if (musicienHP < 1) {
+      document.getElementById('musicien').style.visibility='hidden';
   }
   if (darkHeraldHP < 1) {
       document.getElementById('darkherald').style.visibility='hidden';
@@ -237,11 +237,11 @@ function updateAllHPA() {
       document.getElementById('abyssdeux').style.visibility='hidden';
       document.getElementById('abyssdeuxButton').style.visibility='hidden';
   }
-  blueTemplarArmor = 10;
+  assaArmor = 10;
   mageArmor = 5;
-  greenTemplarArmor = 10;
-  blackTemplarArmor =  10;
-  if (blueTemplarHP > 0 || mageHP > 0 || greenTemplarHP > 0 || blackTemplarHP > 0) {
+  archerArmor = 10;
+  musicienArmor =  10;
+  if (assaHP > 0 || mageHP > 0 || archerHP > 0 || musicienHP > 0) {
       document.getElementById("combatLog").innerHTML = "Les templiers sont tous morts";
   }
   if (darkHeraldHP > 0 || abyssunHP > 0 || abyssdeuxHP > 0) {
@@ -298,7 +298,7 @@ function targetSelect(num) {
 }
 
 function monsterStrikeBack() {
-  if (blueTemplarHP > 0 || mageHP > 0 || greenTemplarHP > 0 || blackTemplarHP > 0) {
+  if (assaHP > 0 || mageHP > 0 || archerHP > 0 || musicienHP > 0) {
       selectionCible();
       monsterName = "";
       monsterAttack = 0;
@@ -335,11 +335,11 @@ function monsterStrikeBack() {
 
 function attackMonster(monsterAttack, monsterName) {
   if (monsterTarget == 0) {
-      if (blueTemplarHP - (monsterAttack - blueTemplarArmor) > 0) {
-          blueTemplarHP = blueTemplarHP - (monsterAttack - blueTemplarArmor);
+      if (assaHP - (monsterAttack - assaArmor) > 0) {
+          assaHP = assaHP - (monsterAttack - assaArmor);
           updateAllHPA();
       }
-      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier bleu " + blueTemplarHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier bleu " + assaHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
   }
   else if (monsterTarget == 1) {
       if (mageHP - (monsterAttack - mageArmor) > 0) {
@@ -349,33 +349,33 @@ function attackMonster(monsterAttack, monsterName) {
       document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier rouge " + mageHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
   }
   else if (monsterTarget == 2) {
-      if (greenTemplarHP - (monsterAttack - greenTemplarArmor) > 0) {
-          greenTemplarHP = greenTemplarHP - (monsterAttack - greenTemplarArmor);
+      if (archerHP - (monsterAttack - archerArmor) > 0) {
+          archerHP = archerHP - (monsterAttack - archerArmor);
           updateAllHPA();
       }
-      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier vert " + greenTemplarHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier vert " + archerHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
   }
   else {
-      if (blackTemplarHP - (monsterAttack - blackTemplarArmor) > 0) {
-          blackTemplarHP = blackTemplarHP - (monsterAttack - blackTemplarArmor);
+      if (musicienHP - (monsterAttack - musicienArmor) > 0) {
+          musicienHP = musicienHP - (monsterAttack - musicienArmor);
           updateAllHPA();
       }
-      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier rouge " + blackTemplarHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au templier rouge " + musicienHP + " PV !<br> <input type='button' onclick='monsterStrikeBack()' value='NEXT'>";
   }
 }
 
 function selectionCible() {
   monsterTarget = Math.floor(Math.random() * 4);
-  if (monsterTarget == 0 && blueTemplarHP <= 0) {
+  if (monsterTarget == 0 && assaHP <= 0) {
       selectionCible();
   }
   if (monsterTarget == 1 && mageHP <= 0) {
       selectionCible();
   }
-  if (monsterTarget == 2 && greenTemplarHP <= 0) {
+  if (monsterTarget == 2 && archerHP <= 0) {
       selectionCible();
   }
-  if (monsterTarget == 3 && blackTemplarHP <= 0) {
+  if (monsterTarget == 3 && musicienHP <= 0) {
       selectionCible();
   }
 }
