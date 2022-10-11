@@ -1,0 +1,94 @@
+body {
+    height: 100vh;
+    background: url("carte_combat3.png") no-repeat;
+    background-size: cover;
+   }
+.ensemble {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#msg1 {
+    width: 450px ;
+    height: 50px;
+    border: 5px solid white;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    background-color: #0000FF;
+}
+.battle_info {
+    display:flex;
+    justify-content: space-evenly ;
+}
+.img {
+    display: flex;
+    justify-content: space-between;
+}
+.adv_stats {
+    width: 450px ;
+    height: 150px;
+    border: 5px solid white;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #0000FF;
+}
+#boss {
+    display: flex;
+    align-items: center;
+}
+#miniboss {
+    display: flex;
+    align-items: center;
+}
+#monstre1 {
+    display: flex;
+    align-items: center;
+}
+#monstre2 {
+    display: flex;
+    align-items: center;
+}
+.action {
+    width: 450px ;
+    height: 150px;
+    border: 5px solid white;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #0000FF;
+}
+.team {
+    width: 450px ;
+    height: 150px;
+    border: 5px solid white;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #0000FF;
+}
+#hero1 {
+    display: flex;
+    align-items: center;
+    transform: translate(100px, 200px);
+}
+#hero2 {
+    display: flex;
+    align-items: center;
+    transform: translate(100px, 200px);
+}#hero3 {
+    display: flex;
+    align-items: center;
+    transform: translate(100px, 200px);
+}#hero4 {
+    display: flex;
+    align-items: center;
+    transform: translate(100px, 200px);
+}
