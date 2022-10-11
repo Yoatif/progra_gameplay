@@ -61,8 +61,8 @@ var attackButton = document.getElementById("button1");
 var specialeButton = document.getElementById("button2");
 var defenseButton = document.getElementById("button3");
 //bool fin du jeu
-var win = (bossHP<=0 and minibossHP<=0 and rougeHP<=0 and vertHP<=0);
-var defeat = (bibiHP<=0 and inoxHP<=0 and di4boHP<=0 and kirryuHP<=0);
+var win = (bossHP<=0 && minibossHP<=0 && rougeHP<=0 && vertHP<=0);
+var defeat = (bibiHP<=0 && inoxHP<=0 && di4boHP<=0 && kirryuHP<=0);
 // changer le message en début de combat 
 message.innerHTML= "Récupèrer les cadeaux qu'il à volés";
 
