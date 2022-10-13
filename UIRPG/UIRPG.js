@@ -12,9 +12,9 @@ var archerHP;
 var archerPA;
 var musicienHP;
 var musicienPA;
-var darkHeraldHP;
-var abyssunHP;
-var abyssdeuxHP;
+var santaHP;
+var knutalluxHP;
+var knutalluxdeuxHP;
 var compteurRound;
 var monstreCible;
 var nomMonstreCible;
@@ -45,13 +45,13 @@ function initialisation() {
     musicienArmor = 10;
     musicienAttack = 15;
     musicienStunned = false;
-    darkHeraldHP = 140;
-    abyssunHP = 80;
-    abyssdeuxHP = 80;
+    santaHP = 140;
+    knutalluxHP = 80;
+    knutalluxDeuxHP = 80;
     nbTour = 1;
     compteurRound = 0;
     monstreCible = 0;
-    nomMonstreCible = "Sombre Héraut";
+    nomMonstreCible = "Louis";
     compteurMonstre = 0;
     monsterTarget = 0;
 }
@@ -64,10 +64,10 @@ function round() {
           tourTemplier("bleu", assaAttack, assaPA);    
       }
       else if (assaHP <= 0) {
-          document.getElementById("combatLog").innerHTML = "Le templier bleu est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+          document.getElementById("combatLog").innerHTML = "Liam est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
       }
       else {
-          document.getElementById("combatLog").innerHTML = "Le templier bleu est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+          document.getElementById("combatLog").innerHTML = "Liam est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
       }
   }
   else if (compteurRound == 1) {
@@ -184,9 +184,9 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
   }
   else {
       musicienPA = musicienPA - 5;
-      abyssdeuxHP = abyssdeuxHP - musicienAttack;
-      abyssunHP = abyssunHP - musicienAttack;
-      darkHeraldHP = darkHeraldHP - musicienAttack;
+      knutalluxDeuxHP = knutalluxDeuxHP - musicienAttack;
+      knutalluxHP = knutalluxHP - musicienAttack;
+      santaHP = santaHP - musicienAttack;
       updateAllHPA();
       document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
@@ -210,9 +210,9 @@ function updateAllHPA() {
   document.getElementById("mageHPA").innerHTML = "PV : " + mageHP + "/40 <br>PA : " + magePA + "/20";
   document.getElementById("archerHPA").innerHTML = "PV : " + archerHP + "/30<br>PA : " + archerPA + "/30";
   document.getElementById("musicienHPA").innerHTML = "PV : " + musicienHP + "/40<br>PA : " + musicienPA + "/30";
-  document.getElementById("darkHeraldHP").innerHTML = "PV : " + darkHeraldHP + "/140";
-  document.getElementById("abyssunHP").innerHTML = "PV : " + abyssunHP + "/80";
-  document.getElementById("abyssdeuxHP").innerHTML = "PV : " + abyssdeuxHP + "/80";
+  document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
+  document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
+  document.getElementById("knutalluxDeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
   if (assaHP < 1) {
       document.getElementById('assa').style.visibility='hidden';
   }
@@ -225,17 +225,17 @@ function updateAllHPA() {
   if (musicienHP < 1) {
       document.getElementById('musicien').style.visibility='hidden';
   }
-  if (darkHeraldHP < 1) {
-      document.getElementById('darkherald').style.visibility='hidden';
-      document.getElementById('darkHeraldButton').style.visibility='hidden';
+  if (santaHP < 1) {
+      document.getElementById('santa').style.visibility='hidden';
+      document.getElementById('santaButton').style.visibility='hidden';
   }
-  if (abyssunHP < 1) {
-      document.getElementById('abyssun').style.visibility='hidden';
-      document.getElementById('abyssunButton').style.visibility='hidden';
+  if (knutalluxHP < 1) {
+      document.getElementById('knutallux').style.visibility='hidden';
+      document.getElementById('knutalluxButton').style.visibility='hidden';
   }
-  if (abyssdeuxHP < 1) {
-      document.getElementById('abyssdeux').style.visibility='hidden';
-      document.getElementById('abyssdeuxButton').style.visibility='hidden';
+  if (knutalluxDeuxHP < 1) {
+      document.getElementById('knutalluxDeux').style.visibility='hidden';
+      document.getElementById('knutalluxDeuxButton').style.visibility='hidden';
   }
   assaArmor = 10;
   mageArmor = 5;
@@ -244,7 +244,7 @@ function updateAllHPA() {
   if (assaHP > 0 || mageHP > 0 || archerHP > 0 || musicienHP > 0) {
       document.getElementById("combatLog").innerHTML = "Les templiers sont tous morts";
   }
-  if (darkHeraldHP > 0 || abyssunHP > 0 || abyssdeuxHP > 0) {
+  if (santaHP > 0 || knutalluxHP > 0 || knutalluxDeuxHP > 0) {
       document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
   }
 }
@@ -259,41 +259,41 @@ function cacherHP(id) {
 
 function monstreBlessure(templarName, damage) {
   if (monstreCible == 0) {
-      darkHeraldHP = darkHeraldHP - damage;
+      santaHP = santaHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au Sombre Héraut " + darkHeraldHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste a Louis " + santaHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else if (monstreCible == 1) {
-      abyssunHP = abyssunHP - damage;
+      knutalluxHP = knutalluxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + abyssunHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
-      abyssdeuxHP = abyssdeuxHP - damage;
+      knutalluxDeuxHP = knutalluxDeuxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + abyssdeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
 }
 
 function targetSelect(num) {
   monstreCible = num;
   if (num == 0) {
-      nomMonstreCible = "Sombre Héraut";
-      document.getElementById("darkHeraldButton").style.color='red';
-      document.getElementById("abyssunButton").style.color='black';
-      document.getElementById("abyssdeuxButton").style.color='black';
+      nomMonstreCible = "Louis";
+      document.getElementById("santaButton").style.color='red';
+      document.getElementById("knutalluxButton").style.color='black';
+      document.getElementById("knutalluxDeuxButton").style.color='black';
   }
   else if (num == 1) {
       nomMonstreCible = "Monstre abyssale (1)";
-      document.getElementById("darkHeraldButton").style.color='black';
-      document.getElementById("abyssunButton").style.color='red';
-      document.getElementById("abyssdeuxButton").style.color='black';
+      document.getElementById("santaButton").style.color='black';
+      document.getElementById("knutalluxButton").style.color='red';
+      document.getElementById("knutalluxDeuxButton").style.color='black';
   }
   else {
       nomMonstreCible = "Monstre abyssale (2)";
-      document.getElementById("darkHeraldButton").style.color='black';
-      document.getElementById("abyssunButton").style.color='black';
-      document.getElementById("abyssdeuxButton").style.color='red';
+      document.getElementById("santaButton").style.color='black';
+      document.getElementById("knutalluxButton").style.color='black';
+      document.getElementById("knutalluxDeuxButton").style.color='red';
   }
 }
 
@@ -302,19 +302,19 @@ function monsterStrikeBack() {
       selectionCible();
       monsterName = "";
       monsterAttack = 0;
-      if (darkHeraldHP > 0 && compteurMonstre == 0) {
+      if (santaHP > 0 && compteurMonstre == 0) {
           compteurMonstre = compteurMonstre + 1;
-          monsterName = "Sombre Héraut";
+          monsterName = "Louis";
           monsterAttack = 30;
           attackMonster(monsterAttack, monsterName)
       }
-      else if (abyssunHP > 0 && compteurMonstre == 1) {
+      else if (knutalluxHP > 0 && compteurMonstre == 1) {
           compteurMonstre = compteurMonstre + 1;
           monsterName = "monstre abyssale (1)";
           monsterAttack = 20;
           attackMonster(monsterAttack, monsterName)
       }
-      else if (abyssdeuxHP > 0 && compteurMonstre == 2) {
+      else if (knutalluxDeuxHP > 0 && compteurMonstre == 2) {
           compteurMonstre = compteurMonstre + 1;
           monsterName = "monstre abyssale (2)";
           monsterAttack = 20;

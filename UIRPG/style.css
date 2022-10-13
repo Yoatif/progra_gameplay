@@ -25,41 +25,32 @@ header {
 	margin-bottom : 5px;
 }
 
-#darkherald{
+#santa{
 	position: fixed;
 	top:50%;
 	left:25%;
 }
 
-#darkherald{
-	position: fixed;
-	top:50%;
-	left:25%;
-}
 
-#darkheraldImg {
+#santaImg {
 	height:192px;
 	width:192px;
 }
 
-#darkheraldImg {
-	height:192px;
-	width:192px;
-}
 
-#abyssun {
+#knutallux {
 	position: fixed;
 	top:35%;
 	left:15%;
 }
 
-#abyssdeux {
+#knutalluxDeux {
 	position: fixed;
 	top:65%;
 	left:15%;
 }
 
-#abyssunImg, #abyssdeuxImg {
+#knutalluxImg, #knutalluxDeuxImg {
 	height:180px;
 	width:180px;
 }
@@ -80,9 +71,9 @@ header {
 	text-align: center;
 }
 
-#darkHeraldHP,darkHeraldHP, #abyssunHP, #abyssdeuxHP {
+#santaHP, #knutalluxHP, #knutalluxDeuxHP {
 	position: relative;
-	background-color:darkred;
+	background-color:rgb(27, 24, 123);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;
@@ -104,13 +95,13 @@ header {
 	right:25%;
 }
 
-#archer {
+#musicien {
 	position: fixed;
 	top:70%;
 	right:25%;
 }
 
-#musicien {
+#archer {
 	position: fixed;
 	top:45%;
 	right:12%;
@@ -135,7 +126,7 @@ footer {
 
 #targetselect {
 	position: relative;
-	background-color:rgb(128, 56, 15);
+	background-color:rgb(27, 24, 123);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;
@@ -146,10 +137,6 @@ footer {
 	border-color:wheat;
 }
 
-#darkHeraldButton {
-	color:red;
-}
-
-#darkHeraldButton {
+#santaButton {
 	color:red;
 }
