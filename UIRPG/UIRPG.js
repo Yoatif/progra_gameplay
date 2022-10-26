@@ -1,52 +1,55 @@
-var assaHP;
-var assaPA;
-var assaArmor;
-var assaAttack;
-var assaStunned;
-var mageHP;
-var magePA;
-var mageArmor;
-var mageAttack;
-var mageStunned;
-var archerHP;
-var archerPA;
-var musicienHP;
-var musicienPA;
-var santaHP;
-var knutalluxHP;
-var knutalluxdeuxHP;
-var compteurRound;
-var monstreCible;
-var nomMonstreCible;
-var compteurMonstre;
-var randomInt;
-var monsterTarget;
-
-
+   
 //Fonction d'initialisation des variables
 function initialisation() {
+    // Init var joueur
+    //var assa
+
+    assa = document.getElementById("assa");
     assaHP = 50;
     assaPA = 10;
     assaArmor = 10;
     assaAttack = 10;
-    assaStunned = false;   
+    assaStunned = false;
+    mortAssa = false;  
+    
+    //mage
+    mage = document.getElementById("mage");
     mageHP = 40;
     magePA = 20;
     mageArmor = 5;
     mageAttack = 15;
     mageStunned = false;
+    mortMage = false;
+
+    //archer
+    archer = document.getElementById("archer");
     archerHP = 30;
     archerPA = 30;
     archerArmor = 10;
     archerAttack = 15;
     archerStunned = false;
+    mortArcher = false;
+
+    //var musicien
+    musicien = document.getElementById("musicien");
     musicienHP = 40;
     musicienPA = 30;
     musicienArmor = 10;
     musicienAttack = 15;
     musicienStunned = false;
+    mortMusicien = false;
+    // Init var monstre
+
+    //var Santa
+    santa = document.getElementById("Louis");
     santaHP = 140;
+
+    //var Knutallx
+    knutallux = document.getElementById("knutallux");
     knutalluxHP = 80;
+
+    //var KnutalluxDeux
+    knutalluxDeux = document.getElementById("knutalluxDeux");
     knutalluxDeuxHP = 80;
     nbTour = 1;
     compteurRound = 0;
@@ -54,10 +57,19 @@ function initialisation() {
     nomMonstreCible = "Louis";
     compteurMonstre = 0;
     monsterTarget = 0;
+
+    //Init var button
+    attack = document.getElementById("button1");
+    speciale = document.getElementById("button2");
+    defense = document.getElementById("button3");
+
 }
 
+
+
 function round() {
-  if (compteurRound == 0) {
+tourJoueur = true;
+  /*if (compteurRound == 0) {
       document.getElementById('assaHPA').style.color='black';
       document.getElementById('musicienHPA').style.color='white';
       if (!assaStunned && assaHP > 0) {
@@ -112,48 +124,84 @@ function round() {
   else if (compteurRound == 4) {
       document.getElementById('musicienHPA').style.color='white';
       monsterStrikeBack();
-  }
+  }*/
+switch ( true){
+    case (tourJoueur == true):
+        switch (i){
+            case (i == 0):
+                console.log("assa");
+                i = i+1;
+                break;
+            case (i == 1):
+                console.log("mage");
+                i = i+1;
+                break;
+            case (i == 2):
+                console.log("musicien");
+                i = i+1;
+                break;
+            case (i == 3):
+                console.log("archer");
+                i = i+1;
+                break;
+        }
+    break;
+    case (tourJoueur == false):
+        switch (j){
+            case (j == 0):
+                console.log("knutallux");
+                break;
+            case (j == 1):
+                console.log("knutalluxDeux");
+                break;
+            case (j == 2):
+                console.log("santa");
+                break;
+        }
+    break;
+
+}
 }
 
-function tourTemplier(templarName, templarAttack, templarPA) {
-  document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " se prépare à agir ! <br> <input type='button' onclick='monstreBlessure(\""+templarName+"\","+templarAttack+")' value='Attaque'> <input type='button' onclick='templarDefend(\""+templarName+"\")' value='Defense'> <input type='button' onclick='templarSpecialAttack(\""+templarName+"\","+templarAttack+","+templarPA+")' value='Attaque Speciale'> ";
+function tourTemplier(assaName, assaAttack, assaPA) {
+  document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " se prépare à agir ! <br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+assaName+"\")' value='Defense'> <input type='button' onclick='assaSpecialAttack(\""+assaName+"\","+assaAttack+","+assaPA+")' value='Attaque Speciale'> ";
 }
 
-function templarDefend(templarName) {
-  if (templarName == "bleu") {
+function assaDefend(assaName) {
+  if (assaName == "bleu") {
       assaArmor = assaArmor *2
   }
-  else if (templarName == "rouge") {
+  else if (assaName == "rouge") {
       mageArmor = mageArmor *2
   }
-  else if (templarName == "vert") {
+  else if (assaName == "vert") {
       archerArmor = archerArmor *2
   }
   else {
       musicienArmor = musicienArmor *2
   }
-  document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " se prépare à se défendre !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+  document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " se prépare à se défendre !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
 }
 
-function templarSpecialAttack(templarName, templarAttack, templarPA) {
-  if (templarPA < 5) {
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+templarName+"\","+templarAttack+")' value='Attaque'> <input type='button' onclick='templarDefend(\""+templarName+"\")' value='Defense'>";
+function assaSpecialAttack(assaName, assaAttack, assaPA) {
+  if (assaPA < 5) {
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+assaName+"\")' value='Defense'>";
   }
-  else if (templarName == "bleu") {
+  else if (assaName == "bleu") {
       assaArmor = assaArmor * 3;
       mageArmor = mageArmor * 3;
       archerArmor = archerArmor * 3;
       musicienArmor = musicienArmor * 3;
       assaPA = assaPA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " protège ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " protège ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
-  else if (templarName == "rouge") {
+  else if (assaName == "rouge") {
       magePA = magePA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " attaque aveuglément !<br> <input type='button' onclick='monstreBlessure(\""+templarName+"\","+templarAttack*3+")' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " attaque aveuglément !<br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack*3+")' value='NEXT'>";
   }
-  else if (templarName == "vert") {
+  else if (assaName == "vert") {
       if (assaHP < 50 && assaHP + 15 < 50) {
           assaHP = assaHP + 15;
       }
@@ -180,7 +228,7 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
       }
       archerPA = archerPA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " joint les mains en prière et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " joint les mains en prière et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
       musicienPA = musicienPA - 5;
@@ -188,7 +236,7 @@ function templarSpecialAttack(templarName, templarAttack, templarPA) {
       knutalluxHP = knutalluxHP - musicienAttack;
       santaHP = santaHP - musicienAttack;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
 }
 
@@ -257,21 +305,21 @@ function cacherHP(id) {
   document.getElementById(id).style.visibility='hidden'
 }
 
-function monstreBlessure(templarName, damage) {
+function monstreBlessure(assaName, damage) {
   if (monstreCible == 0) {
       santaHP = santaHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste a Louis " + santaHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste a Louis " + santaHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else if (monstreCible == 1) {
       knutalluxHP = knutalluxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
       knutalluxDeuxHP = knutalluxDeuxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + templarName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
 }
 
@@ -378,6 +426,7 @@ function selectionCible() {
   if (monsterTarget == 3 && musicienHP <= 0) {
       selectionCible();
   }
+  
 }
 
 // changer le message en début de combat 
@@ -385,11 +434,12 @@ function selectionCible() {
 
 //function Attack (attackButton)
 
-/*AttackButton.onclick = function(){
+attack.onclick = function(){
   //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
   //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
-  AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
-}*/
+    AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
+    console.log("boutton attaque")
+}
 
 /*function GetEnnemyProtected (id) {
   case 1 :
