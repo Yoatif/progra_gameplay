@@ -69,62 +69,6 @@ function initialisation() {
 
 function round() {
 tourJoueur = true;
-  /*if (compteurRound == 0) {
-      document.getElementById('assaHPA').style.color='black';
-      document.getElementById('musicienHPA').style.color='white';
-      if (!assaStunned && assaHP > 0) {
-          tourTemplier("bleu", assaAttack, assaPA);    
-      }
-      else if (assaHP <= 0) {
-          document.getElementById("combatLog").innerHTML = "Liam est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-      else {
-          document.getElementById("combatLog").innerHTML = "Liam est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-  }
-  else if (compteurRound == 1) {
-      document.getElementById('mageHPA').style.color='black';
-      document.getElementById('assaHPA').style.color='white';
-      if (!mageStunned && mageHP > 0) {
-          tourTemplier("rouge", mageAttack, magePA);
-      }
-      else if (mageHP <= 0) {
-          document.getElementById("combatLog").innerHTML = "Le templier rouge est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-      else {
-          document.getElementById("combatLog").innerHTML = "Le templier rouge est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-  }
-  else if (compteurRound == 2) {
-      document.getElementById('archerHPA').style.color='black';
-      document.getElementById('mageHPA').style.color='white';
-      if (!archerStunned && archerHP > 0) {
-          tourTemplier("vert", archerAttack, archerPA);
-      }
-      else if (archerHP <= 0) {
-          document.getElementById("combatLog").innerHTML = "Le templier vert est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-      else {
-          document.getElementById("combatLog").innerHTML = "Le templier vert est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-  }
-  else if (compteurRound == 3) {
-      document.getElementById('musicienHPA').style.color='black';
-      document.getElementById('archerHPA').style.color='white';
-      if (!musicienStunned && musicienHP > 0) {
-          tourTemplier("noir", musicienAttack, musicienPA);
-      }
-      else if (musicienHP <= 0) {
-          document.getElementById("combatLog").innerHTML = "Le templier noir est mort et ne peux plus attaquer !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-      else {
-          document.getElementById("combatLog").innerHTML = "Le templier noir est incapable d'attaquer ce tour !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
-      }
-  }
-  else if (compteurRound == 4) {
-      document.getElementById('musicienHPA').style.color='white';
-      monsterStrikeBack();
-  }*/
 switch ( true){
     case (tourJoueur == true):
         switch (i){
@@ -143,6 +87,7 @@ switch ( true){
             case (i == 3):
                 console.log("archer");
                 i = i+1;
+                tourJoueur = false;
                 break;
         }
     break;
@@ -163,45 +108,47 @@ switch ( true){
 }
 }
 
-function tourTemplier(assaName, assaAttack, assaPA) {
-  document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " se prépare à agir ! <br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+assaName+"\")' value='Defense'> <input type='button' onclick='assaSpecialAttack(\""+assaName+"\","+assaAttack+","+assaPA+")' value='Attaque Speciale'> ";
+
+ 
+function tourTemplier(playerName, assaAttack, assaPA) {
+  document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " se prépare à agir ! <br> <input type='button' onclick='monstreBlessure(\""+playerName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+playerName+"\")' value='Defense'> <input type='button' onclick='assaSpecialAttack(\""+playerName+"\","+assaAttack+","+assaPA+")' value='Attaque Speciale'> ";
 }
 
-function assaDefend(assaName) {
-  if (assaName == "bleu") {
+function assaDefend(playerName) {
+  if (playerName == "bleu") {
       assaArmor = assaArmor *2
   }
-  else if (assaName == "rouge") {
+  else if (playerName == "rouge") {
       mageArmor = mageArmor *2
   }
-  else if (assaName == "vert") {
+  else if (playerName == "vert") {
       archerArmor = archerArmor *2
   }
   else {
       musicienArmor = musicienArmor *2
   }
-  document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " se prépare à se défendre !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+  document.getElementById("combatLog").innerHTML = "l'alié " + playerName + " se prépare à se défendre !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
 }
 
-function assaSpecialAttack(assaName, assaAttack, assaPA) {
+function assaSpecialAttack(playerName, assaAttack, assaPA) {
   if (assaPA < 5) {
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+assaName+"\")' value='Defense'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+playerName+"\","+assaAttack+")' value='Attaque'> <input type='button' onclick='assaDefend(\""+playerName+"\")' value='Defense'>";
   }
-  else if (assaName == "bleu") {
+  else if (playerName == "bleu") {
       assaArmor = assaArmor * 3;
       mageArmor = mageArmor * 3;
       archerArmor = archerArmor * 3;
       musicienArmor = musicienArmor * 3;
       assaPA = assaPA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " protège ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " protège ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
-  else if (assaName == "rouge") {
+  else if (playerName == "rouge") {
       magePA = magePA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " attaque aveuglément !<br> <input type='button' onclick='monstreBlessure(\""+assaName+"\","+assaAttack*3+")' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " attaque aveuglément !<br> <input type='button' onclick='monstreBlessure(\""+playerName+"\","+assaAttack*3+")' value='NEXT'>";
   }
-  else if (assaName == "vert") {
+  else if (playerName == "vert") {
       if (assaHP < 50 && assaHP + 15 < 50) {
           assaHP = assaHP + 15;
       }
@@ -228,7 +175,7 @@ function assaSpecialAttack(assaName, assaAttack, assaPA) {
       }
       archerPA = archerPA - 5;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " joint les mains en prière et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " joint les mains en prière et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
       musicienPA = musicienPA - 5;
@@ -236,7 +183,7 @@ function assaSpecialAttack(assaName, assaAttack, assaPA) {
       knutalluxHP = knutalluxHP - musicienAttack;
       santaHP = santaHP - musicienAttack;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " exécute sa juste vengeance !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
 }
 
@@ -305,21 +252,21 @@ function cacherHP(id) {
   document.getElementById(id).style.visibility='hidden'
 }
 
-function monstreBlessure(assaName, damage) {
+function monstreBlessure(playerName, damage) {
   if (monstreCible == 0) {
       santaHP = santaHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste a Louis " + santaHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " inflige " + damage + "dégâts !<br> Il reste a Louis " + santaHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else if (monstreCible == 1) {
       knutalluxHP = knutalluxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
   else {
       knutalluxDeuxHP = knutalluxDeuxHP - damage;
       updateAllHPA();
-      document.getElementById("combatLog").innerHTML = "Le templier " + assaName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+      document.getElementById("combatLog").innerHTML = "Le templier " + playerName + " inflige " + damage + "dégâts !<br> Il reste au monstre abyssale (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
   }
 }
 
