@@ -13,10 +13,21 @@
 		<div id="combatLog">
 			Le combat a commencé !
 		</div>
+		<div class="action">
+			<div id="att">
+				<button id="button1" type="button" onclick="attack()">attaquer</button>
+			</div>
+			<div id=Spé>
+				<button id="button2" type="button" onclick="spécial()">spécial</button>
+			</div>
+			<div id=protect>
+				<button id="button3" type="button" onclick="protect()">Défense</button>
+			</div>                
+		</div>
 
 	</header>
 	<!-- add body -> onload="initialisation()"-->
-	<body>
+	<body class = screen>
 
 		<div class="monstres">			
 			<div id="santa">
@@ -55,25 +66,16 @@
 			
 		</div>
 		<!--Action-->
-		<div class="action">
-			<div id="att">
-				<button id="button1" type="button" onclick="attack()">attaquer</button>
-			</div>
-			<div id=Spé>
-				<button id="button2" type="button" onclick="spécial()">spécial</button>
-			</div>
-			<div id=protect>
-				<button id="button3" type="button" onclick="protect()">Défense</button>
-			</div>                
-		</div>
+
 	
 	</body>
 
 	<footer>
 		<!--<div id="debutround">
 			<input type="button" onclick="round()" value="Debut du nouveau round !">
-		</div>
-		<div id="targetselect">
+		</div>-->
+
+		<!--<div id="targetselect">
 			<input type="button" id="santaButton" onclick="targetSelect(0)" value="Louis">
 			<input type="button" id="knutalluxButton" onclick="targetSelect(1)" value="Knutallux (1)">
 			<input type="button" id="knutalluxDeuxButton" onclick="targetSelect(2)" value="Knutallux (2)">
