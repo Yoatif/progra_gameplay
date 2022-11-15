@@ -1,111 +1,68 @@
-// déclaration variable assaMP
-var assa;
-var assaHP;
-var assaMP;
-var assaAttack;
-var assaArmor;
-var mortAssa;
+//initialisation des variables
 
-// déclaration variable mage
-var mage;
-var mageMP;
-var mageMP;
-var mageAttack;
-var mageArmor;
-var mortMage;
+//var assa
 
-// déclaration variable archer
-var archer;
-var archerHP;
-var archerMP;
-var archerAttack;
-var archerArmor;
-var mortArcher;
+var assa = document.getElementById("assa");
+var assaHP = 50;
+var assaMP = 10;
+var assaArmor = 10;
+var assaAttack = 10;
+var mortAssa = false;  
 
-// déclaration variable musicien
-var musicien;
-var musicienHP;
-var musicienMP;
-var musicienAttack;
-var musicienArmor;
-var mortMusicien;
+//mage
+var mage = document.getElementById("mage");
+var mageHP = 40;
+var mageMP = 20;
+var mageArmor = 5;
+var mageAttack = 15;
+var mortMage = false;
 
-// déclaration variable Santa
-var santaHP;
+//archer
+var archer = document.getElementById("archer");
+var archerHP = 30;
+var archerMP = 30;
+var archerArmor = 10;
+var archerAttack = 15;
+var mortArcher = false;
 
-//déclaration variable combat
+//var musicien
+var musicien = document.getElementById("musicien");
+var musicienHP = 40;
+var musicienMP = 30;
+var musicienArmor = 10;
+var musicienAttack = 15;
+var mortMusicien = false;
 
-var attack;
-var speciale;
-var defense;
-var i;
-var j;
+// Init var monstre
+//var Santa
+var santa = document.getElementById("Louis");
+var santaHP = 140;
+var mortSanta = false;
 
-//Fonction d'initialisation des variables
-function initialisation() {
-    // Init var joueur
-    //var assa
+//var Knutallux
+var knutallux = document.getElementById("knutallux");
+var knutalluxHP = 80;
+var mortKnutallux = false;
 
-    assa = document.getElementById("assa");
-    assaHP = 50;
-    assaMP = 10;
-    assaArmor = 10;
-    assaAttack = 10;
-    mortAssa = false;  
-    
-    //mage
-    mage = document.getElementById("mage");
-    mageHP = 40;
-    mageMP = 20;
-    mageArmor = 5;
-    mageAttack = 15;
-    mortMage = false;
+//var KnutalluxDeux
+var knutalluxDeux = document.getElementById("knutalluxDeux");
+var knutalluxDeuxHP = 80;
+var mortKnutalluxDeux = false;
 
-    //archer
-    archer = document.getElementById("archer");
-    archerHP = 30;
-    archerMP = 30;
-    archerArmor = 10;
-    archerAttack = 15;
-    mortArcher = false;
+//var combat
+var target = "Louis";
+var compteurMonstre = 0;
+var monsterTarget = 0;
 
-    //var musicien
-    musicien = document.getElementById("musicien");
-    musicienHP = 40;
-    musicienMP = 30;
-    musicienArmor = 10;
-    musicienAttack = 15;
-    mortMusicien = false;
+//Init var button
+var attack = document.getElementById("button1");
+var speciale = document.getElementById("button2");
+var defense = document.getElementById("button3");
 
-    // Init var monstre
-    //var Santa
-    santa = document.getElementById("Louis");
-    santaHP = 140;
 
-    //var Knutallux
-    knutallux = document.getElementById("knutallux");
-    knutalluxHP = 80;
+var j = 0;
 
-    //var KnutalluxDeux
-    knutalluxDeux = document.getElementById("knutalluxDeux");
-    knutalluxDeuxHP = 80;
 
-    //var combat
-    nbTour = 1;
-    compteurRound = 0;
-    monstreCible = 0;
-    nomMonstreCible = "Louis";
-    compteurMonstre = 0;
-    monsterTarget = 0;
-
-    //Init var button
-    attack = document.getElementById("button1");
-    speciale = document.getElementById("button2");
-    defense = document.getElementById("button3");
-    i = 0;
-    j = 0;
-
-}
 
 
 
@@ -113,28 +70,31 @@ function round() {
     console.log("je rentre dans la fonction")
     tourJoueur = true;
     switch ( true){
+        
         case (tourJoueur == true):
+            console.log("je rentre dans switch");
+            var i = 0;
             switch (i){
-                case (i == 0):
+                case 0:
                     console.log("assa");
-                    document.getElementById('assaHPM').style.color='black';
-                    document.getElementById('assaHPM').style.color='white';
-                    tourJoueur()
+                    //document.getElementById('assaHPM').style.color='black';
+                    //document.getElementById('assaHPM').style.color='white';
+                    //tourJoueur()
                     i = i+1;
                     break;
-                case (i == 1):
+                case 1:
                     console.log("mage");
                     document.getElementById('mageHPM').style.color='black';
                     document.getElementById('mageHPM').style.color='white';
                     i = i+1;
                     break;
-                case (i == 2):
+                case 2:
                     console.log("musicien");
                     document.getElementById('musicienHPM').style.color='black';
                     document.getElementById('musicienHPM').style.color='white';
                     i = i+1;
                     break;
-                case (i == 3):
+                case 3:
                     console.log("archer");
                     document.getElementById('archerHPM').style.color='black';
                     document.getElementById('archerHPM').style.color='white';
@@ -142,8 +102,9 @@ function round() {
                     break;
                 default:
                     tourJoueur = false;
-                    break;
+                    
             }
+        break;
         
         case (tourJoueur == false):
             switch (j){
@@ -163,19 +124,33 @@ function round() {
                     tourJoueur = true;
             }
         break;
+        default:
+            console.log("round finis")
 
     }
 }
 
 function tourJoueur(){
     if (attack.onclick() == true){
-        if (SelectedTarget == true){
+        if (selectedTarget() == true){
             targetHP -= playerAttack;
         }
     }
 }
 
+function selectedTarget(){
 
+
+  
+
+}
+
+attack.onclick = function(){
+    //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
+    //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
+      AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
+      console.log("boutton attaque")
+  }
 
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
@@ -185,7 +160,6 @@ function afficherHP(id) {
     document.getElementById(id).style.visibility='hidden'
   }
 
-initialisation()
 round()
 
 
@@ -455,12 +429,7 @@ function selectionCible() {
 
 //function Attack (attackButton)
 
-attack.onclick = function(){
-  //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
-  //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
-    AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
-    console.log("boutton attaque")
-}*/
+*/
 
 /*function GetEnnemyProtected (id) {
   case 1 :
