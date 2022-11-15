@@ -63,7 +63,7 @@ header {
 	width:150px;
 }
 
-#assaHPA, #mageHPA, #archerHPA, #musicienHPA {
+#assaHPM, #mageHPM, #archerHPM, #musicienHPM {
 	position: relative;
 	background-color:rgb(27, 24, 123);
 	color:white;
