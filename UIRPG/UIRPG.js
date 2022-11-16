@@ -3,6 +3,7 @@
 //var assa
 
 var assa = document.getElementById("assa");
+var tourAssa = document.getElementById('assaHPM');
 var assaHP = 50;
 var assaMP = 10;
 var assaArmor = 10;
@@ -11,6 +12,7 @@ var mortAssa = false;
 
 //mage
 var mage = document.getElementById("mage");
+var tourMage = document.getElementById('mageHPM');
 var mageHP = 40;
 var mageMP = 20;
 var mageArmor = 5;
@@ -19,6 +21,7 @@ var mortMage = false;
 
 //archer
 var archer = document.getElementById("archer");
+var tourArcher = document.getElementById('archerHPM');
 var archerHP = 30;
 var archerMP = 30;
 var archerArmor = 10;
@@ -27,6 +30,7 @@ var mortArcher = false;
 
 //var musicien
 var musicien = document.getElementById("musicien");
+var tourMusicien = document.getElementById('musicienHPM');
 var musicienHP = 40;
 var musicienMP = 30;
 var musicienArmor = 10;
@@ -77,26 +81,18 @@ function round() {
             switch (i){
                 case 0:
                     console.log("assa");
-                    document.getElementById('assaHPM').style.color='black';
-                    document.getElementById('assaHPM').style.color='white';
                     i = i+1;
                     break;
                 case 1:
                     console.log("mage");
-                    document.getElementById('mageHPM').style.color='black';
-                    document.getElementById('mageHPM').style.color='white';
                     i = i+1;
                     break;
                 case 2:
                     console.log("musicien");
-                    document.getElementById('musicienHPM').style.color='black';
-                    document.getElementById('musicienHPM').style.color='white';
                     i = i+1;
                     break;
                 case 3:
                     console.log("archer");
-                    document.getElementById('archerHPM').style.color='black';
-                    document.getElementById('archerHPM').style.color='white';
                     i = i+1;
                     break;
                 default:
