@@ -50,7 +50,7 @@ var knutalluxDeuxHP = 80;
 var mortKnutalluxDeux = false;
 
 //var combat
-var target = "Louis";
+var ennemyTarget = "Louis";
 var compteurMonstre = 0;
 var monsterTarget = 0;
 
@@ -126,31 +126,40 @@ function round() {
         break;
         default:
             console.log("round finis")
+            round()
 
     }
-}
-
-function tourJoueur(){
-    if (attack.onclick() == true){
-        if (selectedTarget() == true){
-            targetHP -= playerAttack;
-        }
-    }
-}
-
-function selectedTarget(){
-
-
-  
-
 }
 
 attack.onclick = function(){
     //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
     //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
-      AttackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
+      attackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
       console.log("boutton attaque")
+      
   }
+
+function attackEnnemy(){
+    switch (ennemyTarget){
+        case 1:
+            santaHP -= dammageAmount;
+            console.log("Santa perd des pv")
+            break;
+        case 2 :
+            knutalluxHP -= dammageAmount;
+            console.log("knutallux perd des pv")
+            break;
+        case 3 :
+            knutalluxDeuxHP -= dammageAmount;
+            console.log("knutalluxDeux perd des pv")
+            break;
+        /*case 4:
+            hpVert -= dammageAmount;
+            break;*/
+    }
+}
+
+
 
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
