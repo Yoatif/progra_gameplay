@@ -77,9 +77,8 @@ function round() {
             switch (i){
                 case 0:
                     console.log("assa");
-                    //document.getElementById('assaHPM').style.color='black';
-                    //document.getElementById('assaHPM').style.color='white';
-                    //tourJoueur()
+                    document.getElementById('assaHPM').style.color='black';
+                    document.getElementById('assaHPM').style.color='white';
                     i = i+1;
                     break;
                 case 1:
@@ -108,15 +107,15 @@ function round() {
         
         case (tourJoueur == false):
             switch (j){
-                case (j == 0):
+                case 0:
                     console.log("knutallux");
                     j = j+1;
                     break;
-                case (j == 1):
+                case 1:
                     console.log("knutalluxDeux");
                     j = j+1;
                     break;
-                case (j == 2):
+                case 2:
                     console.log("santa");
                     j = j+1;
                     break;
@@ -131,13 +130,12 @@ function round() {
     }
 }
 
-attack.onclick = function(){
+/*attack.onclick = function(){
     //GetEnnemyProtected(ennemyTarget) is a function that sreturns the value of ennemy protected based on id
     //GetplayerAttack(currentPlayer) is a function that returns the attack value of the current player
-      attackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
+      //attackEnnemy(GetplayerAttack(currentPlayer),GetEnnemyProtected(ennemyTarget));
       console.log("boutton attaque")
-      
-  }
+  }*/
 
 function attackEnnemy(){
     switch (ennemyTarget){
