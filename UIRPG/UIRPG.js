@@ -39,7 +39,8 @@ var mortMusicien = false;
 
 // Init var monstre
 //var Santa
-var santa = document.getElementById("Louis");
+var santa = document.getElementById("santaImg");
+
 var santaHP = 140;
 var mortSanta = false;
 
@@ -66,11 +67,7 @@ var defense = document.getElementById("button3");
 
 var j = 0;
 
-
-
-
-
-function round() {
+/*function round() {
     console.log("je rentre dans la fonction")
     tourJoueur = true;
     switch ( true){
@@ -133,7 +130,7 @@ function round() {
       console.log("boutton attaque")
   }*/
 
-function attackEnnemy(){
+/*function attackEnnemy(){
     switch (ennemyTarget){
         case 1:
             santaHP -= dammageAmount;
@@ -147,24 +144,30 @@ function attackEnnemy(){
             knutalluxDeuxHP -= dammageAmount;
             console.log("knutalluxDeux perd des pv")
             break;
-        /*case 4:
+        case 4:
             hpVert -= dammageAmount;
-            break;*/
+            break;
     }
 }
-
-
+*/
 
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
   }
   
-  function cacherHP(id) {
+function cacherHP(id) {
     document.getElementById(id).style.visibility='hidden'
   }
 
-round()
+function targetSelect(num){
+    monstrecible = num;
+    if(num ==0){
+        console.log("santa")
+    }
+}
 
+
+//round()
 
 /* 
 function tourJoueur(playerName, assaAttack, assaMP) {
