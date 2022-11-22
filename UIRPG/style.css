@@ -7,7 +7,7 @@ body {
 }
 
 header {
-	background-color:rgb(70, 110, 255);
+	background-color:rgb(0, 0, 255);
 	color:white;
 	border-style:solid;
 	border-width: 5px;;
@@ -16,7 +16,7 @@ header {
 	position: fixed;
 	margin-right: 5%;
 	margin-left: 5%;
-	width: 90%;
+	width: 20%;
 	text-align:center;
 	font-weight: bold;
 	display: flex;
@@ -30,7 +30,7 @@ header {
 
 #santa{
 	position: fixed;
-	top:50%;
+	top:45%;
 	left:25%;
 }
 
@@ -43,78 +43,80 @@ header {
 
 #knutallux {
 	position: fixed;
-	top:35%;
-	left:15%;
+	top:30%;
+	left:18%;
 }
 
 #knutalluxDeux {
 	position: fixed;
-	top:65%;
-	left:15%;
+	top:60%;
+	left:18%;
 }
 
-#knutalluxImg, #knutalluxDeuxImg {
+#knutalluxTrois {
+	position: fixed;
+	top:45%;
+	left:10%;
+}
+
+#knutalluxImg, #knutalluxDeuxImg, #knutalluxTroisImg {
 	height:180px;
 	width:180px;
 	
 }
 
-#assaImg, #mageImg, #archerImg{
+#assaImg, #mageImg, #archerImg, #musicienImg{
 	height:150px;
 	width:150px;
 }
 
 #assaHPM, #mageHPM, #archerHPM, #musicienHPM {
 	position: relative;
-	background-color:rgb(27, 24, 123);
+	background-color:rgb(0, 0, 255);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;
 	border-radius:5px;
-	border-color:wheat;
+	border-color:rgb(255, 255, 255);
 	text-align: center;
 }
 
-#santaHP, #knutalluxHP, #knutalluxDeuxHP {
+#santaHP, #knutalluxHP, #knutalluxDeuxHP, #knutalluxTroisHP {
 	position: relative;
-	background-color:rgb(27, 24, 123);
+	background-color:rgb(0, 0, 255);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;
 	border-radius:5px;
-	border-color:wheat;
+	border-color:rgb(255, 255, 255);
 	text-align: center;
 	visibility: hidden;
 }
 
 #assa {
 	position: fixed;
-	top:50%;
+	top:45%;
 	right:30%;
 }
 
 #mage {
 	position: fixed;
 	top:30%;
-	right:25%;
+	right:20%;
 }
 
 #musicien {
 	position: fixed;
-	top:70%;
-	right:25%;
+	top:60%;
+	right:20%;
 }
 
 #archer {
 	position: fixed;
 	top:45%;
-	right:12%;
+	right:10%;
 }
 
-#musicienImg, img.templar{
-	height:200px;
-	width:200px;
-}
 
 footer {
 	position: fixed;
@@ -123,37 +125,42 @@ footer {
 	margin-left: 5%;
 	width : 90%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 #debutround {
 	text-align: center;
+	
 }
 
 #targetselect {
 	position: relative;
-	background-color:rgb(27, 24, 123);
+	background-color:rgb(0, 0, 255);
 	color:white;
 	border-style:solid;
 	border-width: 3px;;
 	border-radius:5px;
 	left:5%;
-	width:390px;
+	width:90px;
+	height: 90px;
+	display: flex;
+	flex-direction: column;
+
 	text-align: center;
-	border-color:wheat;
+	border-color:rgb(255, 255, 255);
 }
 
 #santaButton {
 	color:red;
 }
 
-/*.action {
-    width: 250px ;
+#action {
+    width: 150px ;
     height: 150px;
-    border: 5px solid rgb(106, 0, 255);
+    border: 5px solid rgb(255, 255, 255);
     display:flex;
     flex-direction:column;
     justify-content: center;
 	align-items: center;
-    background-color: #ff0000;
-	}*/
+    background-color: rgb(0, 0, 255);
+	}

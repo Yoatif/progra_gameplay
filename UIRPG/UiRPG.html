@@ -13,17 +13,7 @@
 		<div id="combatLog">
 			Le combat a commencé !
 		</div>
-		<div class="action">
-			<div id="att">
-				<button id="button1" type="button" >attaquer</button>
-			</div>
-			<div id=Spe>
-				<button id="button2" type="button" onclick="special()">spécial</button>
-			</div>
-			<div id=protect>
-				<button id="button3" type="button" onclick="protect()">Défense</button>
-			</div>                
-		</div>
+		
 
 	</header>
 
@@ -41,6 +31,10 @@
 			<div id="knutalluxDeux">
 				<p id="knutalluxDeuxHP">PV : 80/80</p>
 				<img src="asset/monstre/monstre.png" id="knutalluxDeuxImg" onclick="targetSelect(2)" onmouseover="afficherHP('knutalluxDeuxHP')" onmouseout="cacherHP('knutalluxDeuxHP')"></img>
+			</div>
+			<div id="knutalluxTrois">
+				<p id="knutalluxTroisHP">PV : 80/80</p>
+				<img src="asset/monstre/monstre.png" id="knutalluxTroisImg" onclick="targetSelect(3)" onmouseover="afficherHP('knutalluxTroisHP')" onmouseout="cacherHP('knutalluxTroisHP')"></img>
 			</div>
 		</div>-->
 
@@ -71,14 +65,29 @@
 	</body>
 
 	<footer>
-		<!--<div id="debutround">
-			<input type="button" onclick="round()" value="Debut du nouveau round !">
-		</div>-->
 
-		<!--<div id="targetselect">
+		
+		
+
+		<div id="targetselect">
 			<input type="button" id="santaButton" onclick="targetSelect(0)" value="Louis">
 			<input type="button" id="knutalluxButton" onclick="targetSelect(1)" value="Knutallux (1)">
 			<input type="button" id="knutalluxDeuxButton" onclick="targetSelect(2)" value="Knutallux (2)">
+			<input type="button" id ="knutalluxTroisButton" onclick="targetSelect(3)" value="Knutallux (3)">
+		</div>
+		<div id="debutround">
+			<input type="button" onclick="round()" value="Debut du nouveau round !">
+		</div>
+		<div id="action">
+			<div id="att">
+				<button id="button1" type="button" >attaquer</button>
+			</div>
+			<div id=Spe>
+				<button id="button2" type="button" onclick="special()">spécial</button>
+			</div>
+			<div id=protect>
+				<button id="button3" type="button" onclick="protect()">Défense</button>
+			</div>                
 		</div>
 	</footer>	
 </html> 	
