@@ -54,10 +54,17 @@ var knutalluxDeux = document.getElementById("knutalluxDeux");
 var knutalluxDeuxHP = 80;
 var mortKnutalluxDeux = false;
 
+// var KnutalluxTrois
+var knutalluxTrois = document.getElementById("knutalluxTrois");
+var knutalluxTroisHP = 80;
+var mortKnutalluxTrois = false;
+
 //var combat
-var ennemyTarget = "Louis";
+var ennemyTarget = "santa";
 var compteurMonstre = 0;
+var compteurJoueur = 0;
 var monsterTarget = 0;
+var nbTour = 0;
 
 //Init var button
 var attack = document.getElementById("button1");
@@ -65,63 +72,109 @@ var speciale = document.getElementById("button2");
 var defense = document.getElementById("button3");
 
 
-var j = 0;
 function round() {
     console.log("je rentre dans la fonction")
-    tourJoueur = true;
-    switch ( true){
-        
-        case (tourJoueur == true):
-            console.log("je rentre dans switch");
-            var i = 0;
-            switch (i){
-                case 0:
-                    console.log("assa");
-                    i = i+1;
-                    break;
-                case 1:
-                    console.log("mage");
-                    i = i+1;
-                    break;
-                case 2:
-                    console.log("musicien");
-                    i = i+1;
-                    break;
-                case 3:
-                    console.log("archer");
-                    i = i+1;
-                    break;
-                default:
-                    tourJoueur = false;
-                    
+    
+            
+    switch (compteurJoueur){
+        case 0:
+            console.log("assa");
+            document.getElementById('assaHPM').style.color='black';
+            document.getElementById('archerHPM').style.color='white';
+            if (assaHP <= 0) {
+                document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
-        break;
-        
-        case (tourJoueur == false):
-            switch (j){
-                case 0:
-                    console.log("knutallux");
-                    j = j+1;
-                    break;
-                case 1:
-                    console.log("knutalluxDeux");
-                    j = j+1;
-                    break;
-                case 2:
-                    console.log("santa");
-                    j = j+1;
-                    break;
-                default:
-                    tourJoueur = true;
+            else {
+                document.getElementById("combatLog").innerHTML = "L'assasin ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
-        break;
-        default:
-            console.log("round finis")
-            round()
 
+            break;
+        case 1:
+            console.log("mage");
+            document.getElementById('mageHPM').style.color='black';
+            document.getElementById('assaHPM').style.color='white';
+            if (mageHP <= 0) {
+                document.getElementById("combatLog").innerHTML = "Le mage est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+            else {
+                document.getElementById("combatLog").innerHTML = "Le mage ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+
+            break;
+        case 2:
+            console.log("musicien");
+            document.getElementById('musicienHPM').style.color='black';
+            document.getElementById('mageHPM').style.color='white';
+            if (musicienHP <= 0) {
+                document.getElementById("combatLog").innerHTML = "Le musicien est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+            else {
+                document.getElementById("combatLog").innerHTML = "Le musicien ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+
+            break;
+        case 3:
+            console.log("archer");
+            document.getElementById('archerHPM').style.color='black';
+            document.getElementById('musicienHPM').style.color='white';
+            if (archerHP <= 0) {
+                document.getElementById("combatLog").innerHTML = "L'archer est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+            else {
+                document.getElementById("combatLog").innerHTML = "L'archer ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            }
+
+            break;
+                
+        case 4:
+            console.log("knutallux");
+            if (knutalluxHP <= 0){
+                console.log("est mort");
+            }
+
+            counterPlayerIncrement();
+                
+
+            break;
+        case 5:
+            console.log("knutalluxDeux");
+            if (knutalluxDeuxHP <= 0){
+                console.log("est mort");
+            }
+
+            counterPlayerIncrement();
+            
+            break;
+        case 6:
+            console.log("knutalluxTrois");
+            counterPlayerIncrement();
+            
+            break;
+        case 7:
+            console.log("santa");
+            counterPlayerIncrement();
+
+
+        default:
+            tourJoueur = true;
     }
+
+
 }
 
+
+function counterPlayerIncrement() {
+    compteurJoueur += 1;
+    returnToStartingState()
+}
+
+function returnToStartingState() {
+    if (compteurJoueur == 8) {
+        nbTour++;
+        compteurJoueur = 0;
+    }
+    document.getElementById("combatLog").innerHTML = "C'est le tour "+ nbTour + " !<br> <input type='button' onclick='round()' value='NEXT'>";
+}
 
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
