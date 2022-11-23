@@ -147,11 +147,17 @@ function round() {
             break;
         case 6:
             console.log("knutalluxTrois");
+            if (knutalluxTroisHP <= 0){
+                console.log("est mort")
+            }
             counterPlayerIncrement();
             
             break;
         case 7:
             console.log("santa");
+            if (santaHP <=0){
+
+            }
             counterPlayerIncrement();
 
 
@@ -187,8 +193,175 @@ function cacherHP(id) {
 function targetSelect(num){
     monstrecible = num;
     if(num ==0){
-        console.log("santa")
+        console.log("santa");
+        document.getElementById("santaButton").style.color='red';
+        document.getElementById("knutalluxButton").style.color='black';
+        document.getElementById("knutalluxDeuxButton").style.color='black';
+        document.getElementById("knutalluxTroisButton").style.color ='black';
     }
+    else if (num == 1){
+        console.log("knutallux");
+        document.getElementById("santaButton").style.color='black';
+        document.getElementById("knutalluxButton").style.color='red';
+        document.getElementById("knutalluxDeuxButton").style.color='black';
+        document.getElementById("knutalluxTroisButton").style.color ='black';
+    }
+    else if (num == 2){
+        console.log("knutalluxDeux");
+        document.getElementById("santaButton").style.color='black';
+        document.getElementById("knutalluxButton").style.color='black';
+        document.getElementById("knutalluxDeuxButton").style.color='red';
+        document.getElementById("knutalluxTroisButton").style.color ='black';
+    }
+    else{
+        console.log("knutalluxTrois");
+        nomMonstreCible = "knutalluxTrois";
+        document.getElementById("santaButton").style.color='black';
+        document.getElementById("knutalluxButton").style.color='black';
+        document.getElementById("knutalluxDeuxButton").style.color='black';
+        document.getElementById("knutalluxTroisButton").style.color='red';
+    }
+
+
+}
+
+function attaque(){
+    switch(compteurJoueur){
+        case 0:
+            switch(monstreCible){
+                case 0:
+                    santaHP -= assaAttack;
+                    updateHPM()
+                    break;
+                case 1:
+                    knutalluxHP -= assaAttack;
+                    updateHPM()
+                    break;
+                case 2:
+                    knutalluxDeuxHP -= assaAttack;
+                    updateHPM()
+                    break;
+                case 3:
+                    knutalluxTroisHP -= assaAttack;
+                    updateHPM()
+                    break;
+                default:
+                }
+        case 1:
+            switch(monstrecible){
+                case 0:
+                    santaHP -= mageAttack;
+                    updateHPM()
+                    break;
+                case 1:
+                    knutalluxHP -= mageAttack;
+                    updateHPM()
+                    break;
+                case 2:
+                    knutalluxDeuxHP -= mageAttack;
+                    updateHPM()
+                    break;
+                case 3:
+                    knutalluxTroisHP -= mageAttack;
+                    updateHPM()
+                    break;
+                default:
+            }
+        case 2:
+            switch(monstrecible){
+                case 0:
+                    santaHP -= musicienAttack;
+                    updateHPM()
+                    break;
+                case 1:
+                    knutalluxHP -= musicienAttack;
+                    updateHPM()
+                    break;
+                case 2:
+                    knutalluxDeuxHP -= musicienAttack;
+                    updateHPM()
+                    break;
+                case 3:
+                    knutalluxTroisHP -= musicienAttack;
+                    updateHPM()
+                    break;
+                default:
+            }
+        case 3:
+            switch(monstrecible){
+                case 0:
+                    santaHP -= archerAttack;
+                    updateHPM()
+                    break;
+                case 1:
+                    knutalluxHP -= archerAttack;
+                    updateHPM()
+                    break;
+                case 2:
+                    knutalluxDeuxHP -= archerAttack;
+                    updateHPM()
+                    break;
+                case 3:
+                    knutalluxTroisHP -= archerAttack;
+                    updateHPM()
+                    break;
+                default:
+            }
+            
+
+    }
+}
+
+
+function updateHPM(){
+    document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PA : " /*+ assaPM + "/10"*/;
+    document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>PA : " /*+ magePM + "/20"*/;
+    document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>PA : " /*+ musicienPM + "/30"*/;
+    document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>PA : " /*+ archerPM + "/30"*/;
+    document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
+    document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
+    document.getElementById("knutalluxdeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
+    document.getElementById("knutalluxTroisHP").innerHTML = "PV : " + knutalluxTroisHP + "/80";
+
+    if (assaHP < 1) {
+        document.getElementById('assa').style.visibility='hidden';
+    }
+    if (mageHP < 1) {
+        document.getElementById('mage').style.visibility='hidden';
+    }
+    if (musicienHP < 1) {
+        document.getElementById('musicien').style.visibility='hidden';
+    }
+    if (archerHP < 1) {
+        document.getElementById('archer').style.visibility='hidden';
+    }
+    if (santaHP < 1) {
+        document.getElementById('santa').style.visibility='hidden';
+        document.getElementById('santaButton').style.visibility='hidden';
+    }
+    if (knutalluxHP < 1) {
+        document.getElementById('knutallux').style.visibility='hidden';
+        document.getElementById('knutalluxButton').style.visibility='hidden';
+    }
+    if (knutalluxDeuxHP < 1) {
+        document.getElementById('knutalluxdeux').style.visibility='hidden';
+        document.getElementById('knutalluxdeuxButton').style.visibility='hidden';
+    }
+    if (knutalluxTroisHP < 1){
+        document.getElementById('knutalluxTrois').style.visibility='hidden';
+        document.getElementById('knutalluxTroisButton').style.visibility='hidden';
+    }
+    assaArmor = 10;
+    mageArmor = 5;
+    musicienArmor = 10;
+    archerArmor =  10;
+    if (assaHP > 0 || mageHP > 0 || musicienHP > 0 || archerHP > 0) {
+        document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+    }
+    if (santaHP > 0 || knutalluxHP > 0 || knutalluxDeuxHP > 0 || knutalluxTroisHP >0) {
+        document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+    }
+
 }
 
 
