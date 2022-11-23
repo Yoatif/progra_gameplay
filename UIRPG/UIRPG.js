@@ -84,6 +84,9 @@ function round() {
             if (assaHP <= 0) {
                 document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
+            else if (assaHP > 0){
+                attaque()
+            }
             else {
                 document.getElementById("combatLog").innerHTML = "L'assasin ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
@@ -191,7 +194,8 @@ function cacherHP(id) {
   }
 
 function targetSelect(num){
-    monstrecible = num;
+    monstreCible = num;
+    
     if(num ==0){
         console.log("santa");
         document.getElementById("santaButton").style.color='red';
@@ -215,7 +219,7 @@ function targetSelect(num){
     }
     else{
         console.log("knutalluxTrois");
-        nomMonstreCible = "knutalluxTrois";
+        nommonstreCible = "knutalluxTrois";
         document.getElementById("santaButton").style.color='black';
         document.getElementById("knutalluxButton").style.color='black';
         document.getElementById("knutalluxDeuxButton").style.color='black';
@@ -225,7 +229,8 @@ function targetSelect(num){
 
 }
 
-function attaque(){
+function attaque(num){
+    monstreCible = num;
     switch(compteurJoueur){
         case 0:
             switch(monstreCible){
@@ -248,7 +253,7 @@ function attaque(){
                 default:
                 }
         case 1:
-            switch(monstrecible){
+            switch(monstreCible){
                 case 0:
                     santaHP -= mageAttack;
                     updateHPM()
@@ -268,7 +273,7 @@ function attaque(){
                 default:
             }
         case 2:
-            switch(monstrecible){
+            switch(monstreCible){
                 case 0:
                     santaHP -= musicienAttack;
                     updateHPM()
@@ -288,7 +293,7 @@ function attaque(){
                 default:
             }
         case 3:
-            switch(monstrecible){
+            switch(monstreCible){
                 case 0:
                     santaHP -= archerAttack;
                     updateHPM()
@@ -314,10 +319,10 @@ function attaque(){
 
 
 function updateHPM(){
-    document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PA : " /*+ assaPM + "/10"*/;
-    document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>PA : " /*+ magePM + "/20"*/;
-    document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>PA : " /*+ musicienPM + "/30"*/;
-    document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>PA : " /*+ archerPM + "/30"*/;
+    document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PM : " /*+ assaPM + "/10"*/;
+    document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>PM : " /*+ magePM + "/20"*/;
+    document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>PM : " /*+ musicienPM + "/30"*/;
+    document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>PM : " /*+ archerPM + "/30"*/;
     document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
     document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
     document.getElementById("knutalluxdeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
