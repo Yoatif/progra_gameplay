@@ -67,7 +67,7 @@ var monsterTarget = 0;
 var nbTour = 0;
 
 //Init var button
-var attack = document.getElementById("button1");
+var attaque = document.getElementById("button1");
 var speciale = document.getElementById("button2");
 var defense = document.getElementById("button3");
 
@@ -85,7 +85,7 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else if (assaHP > 0){
-                attaque()
+   
             }
             else {
                 document.getElementById("combatLog").innerHTML = "L'assasin ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
@@ -153,17 +153,13 @@ function round() {
             if (knutalluxTroisHP <= 0){
                 console.log("est mort")
             }
-            counterPlayerIncrement();
-            
+            counterPlayerIncrement(); 
             break;
         case 7:
             console.log("santa");
             if (santaHP <=0){
-
             }
             counterPlayerIncrement();
-
-
         default:
             tourJoueur = true;
     }
@@ -229,24 +225,29 @@ function targetSelect(num){
 
 }
 
-function attaque(num){
+attaque.onclick() = function attaque(){
     monstreCible = num;
     switch(compteurJoueur){
         case 0:
+            console.log("attaque assa")
             switch(monstreCible){
                 case 0:
+                    console.log("assa attaque santa");
                     santaHP -= assaAttack;
                     updateHPM()
                     break;
                 case 1:
+                    console.log("assa attaque knutallux");
                     knutalluxHP -= assaAttack;
                     updateHPM()
                     break;
                 case 2:
+                    console.log("assa attaque knutalluxDeux");
                     knutalluxDeuxHP -= assaAttack;
                     updateHPM()
                     break;
                 case 3:
+                    console.log("assa attaque knutalluxTrois");
                     knutalluxTroisHP -= assaAttack;
                     updateHPM()
                     break;
@@ -255,18 +256,22 @@ function attaque(num){
         case 1:
             switch(monstreCible){
                 case 0:
+                    console.log("mage attaque santa");
                     santaHP -= mageAttack;
                     updateHPM()
                     break;
                 case 1:
+                    console.log("mage attaque knutallux");
                     knutalluxHP -= mageAttack;
                     updateHPM()
                     break;
                 case 2:
+                    console.log("mage attaque knutalluxDeux");
                     knutalluxDeuxHP -= mageAttack;
                     updateHPM()
                     break;
                 case 3:
+                    console.log("mage attaque knutalluxTrois");
                     knutalluxTroisHP -= mageAttack;
                     updateHPM()
                     break;
@@ -275,18 +280,22 @@ function attaque(num){
         case 2:
             switch(monstreCible){
                 case 0:
+                    console.log("musicien attaque santa");
                     santaHP -= musicienAttack;
                     updateHPM()
                     break;
                 case 1:
+                    console.log("musicien attaque knutallux");
                     knutalluxHP -= musicienAttack;
                     updateHPM()
                     break;
                 case 2:
+                    console.log("musicien attaque knutalluxDeux");
                     knutalluxDeuxHP -= musicienAttack;
                     updateHPM()
                     break;
                 case 3:
+                    console.log("musicien attaque knutalluxTrois");
                     knutalluxTroisHP -= musicienAttack;
                     updateHPM()
                     break;
@@ -295,18 +304,22 @@ function attaque(num){
         case 3:
             switch(monstreCible){
                 case 0:
+                    console.log("archer attaque santa");
                     santaHP -= archerAttack;
                     updateHPM()
                     break;
                 case 1:
+                    console.log("archer attaque knutallux");
                     knutalluxHP -= archerAttack;
                     updateHPM()
                     break;
                 case 2:
+                    console.log("archer attaque knutalluxDeux");
                     knutalluxDeuxHP -= archerAttack;
                     updateHPM()
                     break;
                 case 3:
+                    console.log("archer attaque knutalluxTrois");
                     knutalluxTroisHP -= archerAttack;
                     updateHPM()
                     break;
