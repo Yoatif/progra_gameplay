@@ -191,6 +191,16 @@ function cacherHP(id) {
 
 function targetSelect(num){
     monstreCible = num;
+    switch(num){
+        case 0:
+        console.log("santa");
+        document.getElementById("santaButton").style.color='red';
+        document.getElementById("knutalluxButton").style.color='black';
+        document.getElementById("knutalluxDeuxButton").style.color='black';
+        document.getElementById("knutalluxTroisButton").style.color ='black';
+        
+            
+    }
     
     if(num ==0){
         console.log("santa");
@@ -225,7 +235,7 @@ function targetSelect(num){
 
 }
 
-attaque.onclick() = function attaque(){
+/*function attaque(){
     monstreCible = num;
     switch(compteurJoueur){
         case 0:
@@ -328,7 +338,7 @@ attaque.onclick() = function attaque(){
             
 
     }
-}
+}*/
 
 
 function updateHPM(){
