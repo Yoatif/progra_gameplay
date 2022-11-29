@@ -63,13 +63,13 @@ var mortKnutalluxTrois = false;
 var ennemyTarget = "santa";
 var compteurMonstre = 0;
 var compteurJoueur = 0;
-var monsterTarget = 0;
+var monsterTarget = " ";
 var nbTour = 0;
 
 //Init var button
-var attaque = document.getElementById("button1");
+/*var attaque = document.getElementById("button1");
 var speciale = document.getElementById("button2");
-var defense = document.getElementById("button3");
+var defense = document.getElementById("button3");*/
 
 
 function round() {
@@ -85,13 +85,11 @@ function round() {
             if (assaHP <= 0) {
                 document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
-            else if (assaHP > 0){
+            else{
+                document.getElementById("assa").style.right = "40%";
+                TourJoueur("assa", assaAttack);
    
             }
-            else {
-                document.getElementById("combatLog").innerHTML = "L'assasin ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
-            }
-
             break;
         case 1:
             console.log("mage");
@@ -101,7 +99,9 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "Le mage est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("combatLog").innerHTML = "Le mage ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("assa").style.right = "30%";
+                document.getElementById("mage").style.right = "30%";
+                TourJoueur("mage", mageAttack);
             }
 
             break;
@@ -113,7 +113,9 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "Le musicien est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("combatLog").innerHTML = "Le musicien ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("mage").style.right = "20%";
+                document.getElementById("musicien").style.right = "30%";
+                TourJoueur("musicien", musicienAttack);
             }
 
             break;
@@ -125,34 +127,43 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "L'archer est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("combatLog").innerHTML = "L'archer ne peut pas attaquer ce tour !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
-            }
+                document.getElementById("musicien").style.right = "20%";
+                document.getElementById("archer").style.right = "20%";
+                TourJoueur("archer", archerAttack);}
 
             break;
                 
         case 4:
             console.log("knutallux");
+            document.getElementById("archer").style.right = "10%";
             if (knutalluxHP <= 0){
                 console.log("est mort");
             }
-
+            else{
+                monsterSelectTarget()
+                attackMonster()             
+            }
             counterPlayerIncrement();
-                
-
             break;
         case 5:
             console.log("knutalluxDeux");
             if (knutalluxDeuxHP <= 0){
                 console.log("est mort");
             }
-
+            else{
+                monsterSelectTarget()
+                attackMonster()
+            }
             counterPlayerIncrement();
-            
             break;
         case 6:
             console.log("knutalluxTrois");
             if (knutalluxTroisHP <= 0){
                 console.log("est mort")
+            }
+            else{
+                monsterSelectTarget()
+                attackMonster()
             }
             counterPlayerIncrement(); 
             break;
@@ -160,14 +171,197 @@ function round() {
             console.log("santa");
             if (santaHP <=0){
             }
+            else{
+                monsterSelectTarget()
+                attackMonster()
+            }
             counterPlayerIncrement();
         default:
-            tourJoueur = true;
+
     }
 
 
 }
 
+function TourJoueur(charaName, charaAttack, charaPM) {
+    document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+")' value='Attaque Speciale'> ";
+}
+
+function attaque(charaName, damage){
+    switch(monstreCible){
+        case 0:
+            santaHP = santaHP - damage;
+            updateHPM();
+            document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste au santa " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 1:
+            knutalluxHP = knutalluxHP - damage;
+            updateHPM();
+            document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 2:
+            knutalluxDeuxHP = knutalluxDeuxHP - damage;
+            updateHPM();
+            document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 3:
+            knutalluxTroisHP = knutalluxTroisHP -damage;
+            updateHPM();
+            document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;            
+
+    }
+
+}
+
+function protect(charaName,){
+    if (charaName == "assa") {
+        assaArmor = assaArmor *2
+        console.log("assaArmor =" + assaArmor)
+    }
+    else if (charaName == "mage") {
+        mageArmor = mageArmor *2
+        console.log("mageArmor =" + mageArmor)
+    }
+    else if (charaName == "musicien") {
+        musicienArmor = musicienArmor *2
+    }
+    else {
+        archerArmor = archerArmor *2
+    }
+    document.getElementById("combatLog").innerHTML = charaName + " se prépare à se défendre !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+
+}
+
+function special(charaName, charaAttack, charaPM, damage){
+    if (charaPM < 5) {
+        document.getElementById("combatLog").innerHTML = charaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
+    }
+    else if (charaName == "assa"){
+        switch(monstreCible){
+            case 0:
+                assaMP = assaMP - 5;
+                santaHP = santaHP - (damage*2);
+                updateHPM();
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste au santa " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                break;
+            case 1:
+                assaMP = assaMP - 5;
+                knutalluxHP = knutalluxHP - (damage*2);
+                updateHPM();
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                break;
+            case 2:
+                assaMP = assaMP - 5;
+                knutalluxDeuxHP = knutalluxDeuxHP - (damage*2);
+                updateHPM();
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                break;
+            case 3:
+                assaMP = assaMP - 5;
+                knutalluxTroisHP = knutalluxTroisHP -(damage*2);
+                updateHPM();
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                break;
+            default:
+        }
+    }
+    else if (charaName == "mage"){
+        mageMP = mageMP - 5;
+        updateHPM();
+        document.getElementById("combatLog").innerHTML = charaName + " récite une incantation<br> <input type='button' onclick='monstreBlessure(\""+charaName+"\","+(charaAttack*2.5)+")' value='NEXT'>";
+    }
+    else if (charaName == "musicien"){
+        if (assaHP < 50 && assaHP + 15 < 50) {
+            assaHP = assaHP + 15;
+        }
+        else if (assaHP < 50) {
+            assaHP = 50;
+        }
+        if (mageHP < 40 && mageHP + 15 < 40) {
+            mageHP = mageHP + 15;
+        }
+        else if (mageHP < 40) {
+            mageHP = 40;
+        }
+        if (musicienHP < 30 && musicienHP + 15 < 30) {
+            musicienHP = musicienHP + 15;
+        }
+        else if (musicienHP < 30) {
+            musicienHP = 30;
+        }
+        if (archerHP < 40 && archerHP + 15 < 40) {
+            archerHP = archerHP + 15;
+        }
+        else if (archerHP < 40) {
+            archerHP = 40;
+        }
+        musicienMP = musicienMP - 5;
+        updateHPM();
+        document.getElementById("combatLog").innerHTML = charaName + " commence un puissant riff, de sa bouzouki et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+
+    }
+    else{
+        archerMP = archerMP - 5;
+        knutalluxHP = knutalluxHP - archerAttack;
+        knutalluxDeuxHP = knutalluxDeuxHP - archerAttack;
+        knutalluxTroisHP = knutalluxTroisHP - archerAttack;
+        santaHP = santaHP - archerAttack;
+        updateHPM();
+        document.getElementById("combatLog").innerHTML = charaName + " tir une pluie de flèche !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+
+    }
+
+}
+
+function updateHPM(){
+    document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PM : " + assaPM + "/10";
+    document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>PM : " + magePM + "/20";
+    document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>PM : " + musicienPM + "/30";
+    document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>PM : " + archerPM + "/30";
+    document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
+    document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
+    document.getElementById("knutalluxDeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
+    document.getElementById("knutalluxTroisHP").innerHTML = "PV : " + knutalluxTroisHP + "/80";
+    if (assaHP < 1) {
+        document.getElementById('assa').style.visibility='hidden';
+    }
+    if (mageHP < 1) {
+        document.getElementById('mage').style.visibility='hidden';
+    }
+    if (musicienHP < 1) {
+        document.getElementById('musicien').style.visibility='hidden';
+    }
+    if (archerHP < 1) {
+        document.getElementById('archer').style.visibility='hidden';
+    }
+    if (santaHP < 1) {
+        document.getElementById('santa').style.visibility='hidden';
+        document.getElementById('santaButton').style.visibility='hidden';
+    }
+    if (knutalluxHP < 1) {
+        document.getElementById('knutallux').style.visibility='hidden';
+        document.getElementById('knutalluxButton').style.visibility='hidden';
+    }
+    if (knutalluxDeuxHP < 1) {
+        document.getElementById('knutalluxDeux').style.visibility='hidden';
+        document.getElementById('knutalluxDeuxButton').style.visibility='hidden';
+    }
+    if(knutalluxTroisHP < 1){
+        document.getElementById('knutalluxTrois').style.visibility="hidden";
+        document.getElementById('knutalluxTroisButton').style.visibility="hidden";
+    }
+    assaArmor = 10;
+    mageArmor = 5;
+    musicienArmor = 10;
+    archerArmor =  10;
+    if (assaHP > 0 || mageHP > 0 || musicienHP > 0 || archerHP > 0) {
+        document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+    }
+    if (santaHP > 0 || knutalluxHP > 0 || knutalluxDeuxHP > 0 || knutalluxTroisHP >0) {
+        document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+    }
+}
 
 function counterPlayerIncrement() {
     compteurJoueur += 1;
@@ -184,24 +378,14 @@ function returnToStartingState() {
 
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
-  }
+}
   
 function cacherHP(id) {
     document.getElementById(id).style.visibility='hidden'
-  }
+}
 
 function targetSelect(num){
     monstreCible = num;
-    switch(num){
-        case 0:
-        console.log("santa");
-        document.getElementById("santaButton").style.color='red';
-        document.getElementById("knutalluxButton").style.color='black';
-        document.getElementById("knutalluxDeuxButton").style.color='black';
-        document.getElementById("knutalluxTroisButton").style.color ='black';
-        
-            
-    }
     
     if(num ==0){
         console.log("santa");
@@ -232,115 +416,65 @@ function targetSelect(num){
         document.getElementById("knutalluxDeuxButton").style.color='black';
         document.getElementById("knutalluxTroisButton").style.color='red';
     }
+    return monstreCible;
 
 
 }
 
-function attaque(){
-    monstreCible = num;
-    switch(compteurJoueur){
-        case 0:
-            console.log("attaque assa")
-            switch(monstreCible){
-                case 0:
-                    console.log("assa attaque santa");
-                    santaHP -= assaAttack;
-                    updateHPM()
-                    break;
-                case 1:
-                    console.log("assa attaque knutallux");
-                    knutalluxHP -= assaAttack;
-                    updateHPM()
-                    break;
-                case 2:
-                    console.log("assa attaque knutalluxDeux");
-                    knutalluxDeuxHP -= assaAttack;
-                    updateHPM()
-                    break;
-                case 3:
-                    console.log("assa attaque knutalluxTrois");
-                    knutalluxTroisHP -= assaAttack;
-                    updateHPM()
-                    break;
-                default:
-                }
-        case 1:
-            switch(monstreCible){
-                case 0:
-                    console.log("mage attaque santa");
-                    santaHP -= mageAttack;
-                    updateHPM()
-                    break;
-                case 1:
-                    console.log("mage attaque knutallux");
-                    knutalluxHP -= mageAttack;
-                    updateHPM()
-                    break;
-                case 2:
-                    console.log("mage attaque knutalluxDeux");
-                    knutalluxDeuxHP -= mageAttack;
-                    updateHPM()
-                    break;
-                case 3:
-                    console.log("mage attaque knutalluxTrois");
-                    knutalluxTroisHP -= mageAttack;
-                    updateHPM()
-                    break;
-                default:
-            }
-        case 2:
-            switch(monstreCible){
-                case 0:
-                    console.log("musicien attaque santa");
-                    santaHP -= musicienAttack;
-                    updateHPM()
-                    break;
-                case 1:
-                    console.log("musicien attaque knutallux");
-                    knutalluxHP -= musicienAttack;
-                    updateHPM()
-                    break;
-                case 2:
-                    console.log("musicien attaque knutalluxDeux");
-                    knutalluxDeuxHP -= musicienAttack;
-                    updateHPM()
-                    break;
-                case 3:
-                    console.log("musicien attaque knutalluxTrois");
-                    knutalluxTroisHP -= musicienAttack;
-                    updateHPM()
-                    break;
-                default:
-            }
-        case 3:
-            switch(monstreCible){
-                case 0:
-                    console.log("archer attaque santa");
-                    santaHP -= archerAttack;
-                    updateHPM()
-                    break;
-                case 1:
-                    console.log("archer attaque knutallux");
-                    knutalluxHP -= archerAttack;
-                    updateHPM()
-                    break;
-                case 2:
-                    console.log("archer attaque knutalluxDeux");
-                    knutalluxDeuxHP -= archerAttack;
-                    updateHPM()
-                    break;
-                case 3:
-                    console.log("archer attaque knutalluxTrois");
-                    knutalluxTroisHP -= archerAttack;
-                    updateHPM()
-                    break;
-                default:
-            }
-            
+function monsterSelectTarget(){
+    monsterTarget = Math.floor(Math.random() * 4);
+    if (monsterTarget == 0 && assaHP <= 0) {
+        console.log("assa est la cible")
+        monsterSelectTarget();
+    }
+    if (monsterTarget == 1 && mageHP <= 0) {
+        console.log("mage est la cible")
+        monsterSelectTarget();
+    }
+    if (monsterTarget == 2 && musicienHP <= 0) {
+        console.log("musicien est la cible")
+        monsterSelectTarget();
+    }
+    if (monsterTarget == 3 && archerHP <= 0) {
+        console.log("archer est la cible")
+        monsterSelectTarget();
+    }
 
+}
+
+function attackMonster(){
+    switch(monsterTarget){
+        case 0:
+            if (assaHP - (monsterAttack - assaArmor) > 0) {
+                assaHP = assaHP - (monsterAttack - assaArmor);
+                updateHPM();
+            }
+            document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste a l'assasin " + assaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 1:
+            if (mageHP - (monsterAttack - mageArmor) > 0) {
+                mageHP = mageHP - (monsterAttack - mageArmor);
+                updateHPM();
+            }
+            document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au mage " + mageHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 2:
+            if (musicienHP - (monsterAttack - musicienArmor) > 0) {
+                musicienHP = musicienHP - (monsterAttack - musicienArmor);
+                updateHPM();
+            }
+            document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste au musicien " + musicienHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        case 3:
+            if (archerHP - (monsterAttack - archerArmor) > 0) {
+                archerHP = archerHP - (monsterAttack - archerArmor);
+                updateHPM();
+            }
+            document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste a l'archer " + assaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            break;
+        default:    
     }
 }
-
 
 function updateHPM(){
     document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PM : " /*+ assaPM + "/10"*/;
@@ -349,7 +483,7 @@ function updateHPM(){
     document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>PM : " /*+ archerPM + "/30"*/;
     document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
     document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
-    document.getElementById("knutalluxdeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
+    document.getElementById("knutalluxDeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
     document.getElementById("knutalluxTroisHP").innerHTML = "PV : " + knutalluxTroisHP + "/80";
 
     if (assaHP < 1) {
@@ -392,5 +526,3 @@ function updateHPM(){
     }
 
 }
-
-
