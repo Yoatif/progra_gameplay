@@ -79,6 +79,7 @@ function round() {
     switch (compteurJoueur){
         case 0:
             console.log("assa");
+            document.getElementById('assaImg').style.right = '40%' ;
             document.getElementById('assaHPM').style.color='black';
             document.getElementById('archerHPM').style.color='white';
             if (assaHP <= 0) {
@@ -235,7 +236,7 @@ function targetSelect(num){
 
 }
 
-/*function attaque(){
+function attaque(){
     monstreCible = num;
     switch(compteurJoueur){
         case 0:
@@ -338,7 +339,7 @@ function targetSelect(num){
             
 
     }
-}*/
+}
 
 
 function updateHPM(){
