@@ -40,23 +40,26 @@ var mortMusicien = false;
 // Init var monstre
 //var Santa
 var santa = document.getElementById("santaImg");
-
 var santaHP = 140;
+var santaAttack = 40;
 var mortSanta = false;
 
 //var Knutallux
 var knutallux = document.getElementById("knutallux");
 var knutalluxHP = 80;
+var knutalluxAttack = 20;
 var mortKnutallux = false;
 
 //var KnutalluxDeux
 var knutalluxDeux = document.getElementById("knutalluxDeux");
 var knutalluxDeuxHP = 80;
+var knutalluxDeuxAttack = 20;
 var mortKnutalluxDeux = false;
 
 // var KnutalluxTrois
 var knutalluxTrois = document.getElementById("knutalluxTrois");
 var knutalluxTroisHP = 80;
+var knutalluxTroisAttack = 20;
 var mortKnutalluxTrois = false;
 
 //var combat
@@ -137,43 +140,48 @@ function round() {
             console.log("knutallux");
             document.getElementById("archer").style.right = "10%";
             if (knutalluxHP <= 0){
+                document.getElementById('knutallux').style.display = 'none';
                 console.log("est mort");
             }
             else{
                 monsterSelectTarget()
-                attackMonster()             
+                attackMonster("knutallux", knutalluxAttack)             
             }
             counterPlayerIncrement();
             break;
         case 5:
             console.log("knutalluxDeux");
             if (knutalluxDeuxHP <= 0){
+                document.getElementById('knutalluxDeux').style.display = 'none';
                 console.log("est mort");
             }
             else{
-                monsterSelectTarget()
-                attackMonster()
+                monsterSelectTarget();
+                attackMonster("knutalluxDeux", knutalluxDeuxAttack);
             }
             counterPlayerIncrement();
             break;
         case 6:
             console.log("knutalluxTrois");
             if (knutalluxTroisHP <= 0){
+                document.getElementById('knutalluxTrois').style.display = 'none';
                 console.log("est mort")
             }
             else{
-                monsterSelectTarget()
-                attackMonster()
+                monsterSelectTarget();
+                attackMonster("knutalluxTrois", knutalluxTroisAttack );
             }
             counterPlayerIncrement(); 
             break;
         case 7:
             console.log("santa");
             if (santaHP <=0){
+                document.getElementById('santa').style.display = 'none';
+                console.log("santa est mort")
             }
             else{
-                monsterSelectTarget()
-                attackMonster()
+                monsterSelectTarget();
+                attackMonster("santa", santaAttack);
             }
             counterPlayerIncrement();
         default:
@@ -442,7 +450,7 @@ function monsterSelectTarget(){
 
 }
 
-function attackMonster(){
+function attackMonster(monsterName, monsterAttack){
     switch(monsterTarget){
         case 0:
             if (assaHP - (monsterAttack - assaArmor) > 0) {
@@ -467,7 +475,7 @@ function attackMonster(){
             break;
         case 3:
             if (archerHP - (monsterAttack - archerArmor) > 0) {
-                archerHP = archerHP - (monsterAttack - archerArmor);
+                archerHP = archerHP - (monsterAttack     - archerArmor);
                 updateHPM();
             }
             document.getElementById("combatLog").innerHTML = "Le " + monsterName + " inflige " + monsterAttack + "dégâts !<br> Il reste a l'archer " + assaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
@@ -487,32 +495,32 @@ function updateHPM(){
     document.getElementById("knutalluxTroisHP").innerHTML = "PV : " + knutalluxTroisHP + "/80";
 
     if (assaHP < 1) {
-        document.getElementById('assa').style.visibility='hidden';
+        document.getElementById('assa').style.display='none';
     }
     if (mageHP < 1) {
-        document.getElementById('mage').style.visibility='hidden';
+        document.getElementById('mage').style.display='none';
     }
     if (musicienHP < 1) {
-        document.getElementById('musicien').style.visibility='hidden';
+        document.getElementById('musicien').style.display='none';
     }
     if (archerHP < 1) {
-        document.getElementById('archer').style.visibility='hidden';
+        document.getElementById('archer').style.display='none';
     }
     if (santaHP < 1) {
-        document.getElementById('santa').style.visibility='hidden';
-        document.getElementById('santaButton').style.visibility='hidden';
+        document.getElementById('santa').style.style.display='none';
+        document.getElementById('santaButton').style.display='none';
     }
     if (knutalluxHP < 1) {
-        document.getElementById('knutallux').style.visibility='hidden';
-        document.getElementById('knutalluxButton').style.visibility='hidden';
+        document.getElementById('knutallux').style.display='none';
+        document.getElementById('knutalluxButton').style.display='none';
     }
     if (knutalluxDeuxHP < 1) {
-        document.getElementById('knutalluxdeux').style.visibility='hidden';
-        document.getElementById('knutalluxdeuxButton').style.visibility='hidden';
+        document.getElementById('knutalluxdeux').style.display='none';
+        document.getElementById('knutalluxdeuxButton').style.display='none';
     }
     if (knutalluxTroisHP < 1){
-        document.getElementById('knutalluxTrois').style.visibility='hidden';
-        document.getElementById('knutalluxTroisButton').style.visibility='hidden';
+        document.getElementById('knutalluxTrois').style.display='none';
+        document.getElementById('knutalluxTroisButton').style.display='none';
     }
     assaArmor = 10;
     mageArmor = 5;
