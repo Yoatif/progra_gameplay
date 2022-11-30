@@ -235,7 +235,7 @@ function protect(charaName,){
 
 function special(charaName, charaAttack, charaPM, damage){
     if (charaPM < 5) {
-        document.getElementById("combatLog").innerHTML = charaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='monstreBlessure(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
+        document.getElementById("combatLog").innerHTML = charaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
     }
     else if (charaName == "assa"){
         switch(monstreCible){
@@ -269,7 +269,7 @@ function special(charaName, charaAttack, charaPM, damage){
     else if (charaName == "mage"){
         mageMP = mageMP - 5;
         updateHPM();
-        document.getElementById("combatLog").innerHTML = charaName + " récite une incantation<br> <input type='button' onclick='monstreBlessure(\""+charaName+"\","+(charaAttack*2.5)+")' value='NEXT'>";
+        document.getElementById("combatLog").innerHTML = charaName + " récite une incantation<br> <input type='button' onclick='attaque(\""+charaName+"\","+(charaAttack*2.5)+")' value='NEXT'>";
     }
     else if (charaName == "musicien"){
         if (assaHP < 50 && assaHP + 15 < 50) {
@@ -298,7 +298,7 @@ function special(charaName, charaAttack, charaPM, damage){
         }
         musicienMP = musicienMP - 5;
         updateHPM();
-        document.getElementById("combatLog").innerHTML = charaName + " commence un puissant riff, de sa bouzouki et soigne ses alliés !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+        document.getElementById("combatLog").innerHTML = charaName + " commence un puissant riff, de sa bouzouki et soigne ses alliés !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
 
     }
     else{
@@ -308,7 +308,7 @@ function special(charaName, charaAttack, charaPM, damage){
         knutalluxTroisHP = knutalluxTroisHP - archerAttack;
         santaHP = santaHP - archerAttack;
         updateHPM();
-        document.getElementById("combatLog").innerHTML = charaName + " tir une pluie de flèche !<br> <input type='button' onclick='increaseCounter()' value='NEXT'>";
+        document.getElementById("combatLog").innerHTML = charaName + " tir une pluie de flèche !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
 
     }
 
