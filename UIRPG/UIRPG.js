@@ -41,7 +41,7 @@ var mortMusicien = false;
 //var Santa
 var santa = document.getElementById("santaImg");
 var santaHP = 140;
-var santaAttack = 40;
+var santaAttack = 30;
 var mortSanta = false;
 
 //var Knutallux
