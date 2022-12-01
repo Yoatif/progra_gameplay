@@ -224,18 +224,18 @@ function attaque(charaName, damage){
 
 function protect(charaName,){
     if (charaName == "assa") {
-        assaArmor = assaArmor *2
-        console.log("assaArmor =" + assaArmor)
+        assaArmor = assaArmor *2;
+        console.log("assaArmor =" + assaArmor);
     }
     else if (charaName == "mage") {
-        mageArmor = mageArmor *2
-        console.log("mageArmor =" + mageArmor)
+        mageArmor = mageArmor *2;
+        console.log("mageArmor =" + mageArmor);
     }
     else if (charaName == "musicien") {
-        musicienArmor = musicienArmor *2
+        musicienArmor = musicienArmor *2;
     }
     else {
-        archerArmor = archerArmor *2
+        archerArmor = archerArmor *2;
     }
     document.getElementById("combatLog").innerHTML = charaName + " se prépare à se défendre !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
 
@@ -249,27 +249,31 @@ function special(charaName, charaAttack, charaPM, damage){
         switch(monstreCible){
             case 0:
                 assaMP = assaMP - 5;
-                santaHP = santaHP - (damage*2);
+                santaHP = santaHP - damage;
+                santaHP = santaHP - damage;
                 updateHPM();
-                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste au santa " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste au santa " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                 break;
             case 1:
                 assaMP = assaMP - 5;
-                knutalluxHP = knutalluxHP - (damage*2);
+                knutalluxHP = knutalluxHP - damage;
+                knutalluxHP = knutalluxHP - damage;
                 updateHPM();
-                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                 break;
             case 2:
                 assaMP = assaMP - 5;
-                knutalluxDeuxHP = knutalluxDeuxHP - (damage*2);
+                knutalluxDeuxHP = knutalluxDeuxHP - damage;
+                knutalluxDeuxHP = knutalluxDeuxHP - damage;
                 updateHPM();
-                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                 break;
             case 3:
                 assaMP = assaMP - 5;
-                knutalluxTroisHP = knutalluxTroisHP -(damage*2);
+                knutalluxTroisHP = knutalluxTroisHP - damage;
+                knutalluxTroisHP = knutalluxTroisHP - damage;
                 updateHPM();
-                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (2*damage) + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                 break;
             default:
         }
