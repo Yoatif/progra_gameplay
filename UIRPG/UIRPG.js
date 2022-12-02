@@ -90,8 +90,14 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else{
-                document.getElementById("assa").style.right = "40%";
+                if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
+                    document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+                }
+                else{
+                    document.getElementById("assa").style.right = "40%";
                 TourJoueur("assa", assaAttack);
+                }
+                
    
             }
             break;
@@ -104,9 +110,14 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "Le mage est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("assa").style.right = "30%";
-                document.getElementById("mage").style.right = "30%";
-                TourJoueur("mage", mageAttack);
+                if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
+                    document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+                }
+                else{
+                    document.getElementById("assa").style.right = "30%";
+                    document.getElementById("mage").style.right = "30%";
+                    TourJoueur("mage", mageAttack);
+                }
             }
 
             break;
@@ -119,9 +130,14 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "Le musicien est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("mage").style.right = "20%";
-                document.getElementById("musicien").style.right = "30%";
-                TourJoueur("musicien", musicienAttack);
+                if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
+                    document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+                }
+                else{
+                    document.getElementById("mage").style.right = "20%";
+                    document.getElementById("musicien").style.right = "30%";
+                    TourJoueur("musicien", musicienAttack);
+                }
             }
 
             break;
@@ -134,9 +150,14 @@ function round() {
                 document.getElementById("combatLog").innerHTML = "L'archer est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
             else {
-                document.getElementById("musicien").style.right = "20%";
-                document.getElementById("archer").style.right = "20%";
-                TourJoueur("archer", archerAttack);}
+                if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
+                    document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
+                }
+                else{
+                    document.getElementById("musicien").style.right = "20%";
+                    document.getElementById("archer").style.right = "20%";
+                    TourJoueur("archer", archerAttack);}
+            }
 
             break;
         // passage tour monstre                
@@ -149,8 +170,14 @@ function round() {
                 console.log("est mort");
             }
             else{
-                monsterSelectTarget()
-                attackMonster("knutallux", knutalluxAttack)             
+                if (assaHP < 0 && mageHP < 0 && musicienHP < 0 && archerHP < 0) {
+                    document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+                }
+                else{
+                    monsterSelectTarget()
+                    attackMonster("knutallux", knutalluxAttack) 
+                }
+                            
             }
             counterPlayerIncrement();
             break;
@@ -162,8 +189,13 @@ function round() {
                 console.log("est mort");
             }
             else{
-                monsterSelectTarget();
-                attackMonster("knutalluxDeux", knutalluxDeuxAttack);
+                if (assaHP < 0 && mageHP < 0 && musicienHP < 0 && archerHP < 0) {
+                    document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+                }
+                else{
+                    monsterSelectTarget();
+                    attackMonster("knutalluxDeux", knutalluxDeuxAttack);
+                }
             }
             counterPlayerIncrement();
             break;
@@ -175,8 +207,13 @@ function round() {
                 console.log("est mort")
             }
             else{
-                monsterSelectTarget();
-                attackMonster("knutalluxTrois", knutalluxTroisAttack );
+                if (assaHP < 0 && mageHP < 0 && musicienHP < 0 && archerHP < 0) {
+                    document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+                }
+                else{
+                    monsterSelectTarget();
+                    attackMonster("knutalluxTrois", knutalluxTroisAttack );
+                }
             }
             counterPlayerIncrement(); 
             break;
@@ -188,8 +225,13 @@ function round() {
                 console.log("santa est mort")
             }
             else{
-                monsterSelectTarget();
-                attackMonster("santa", santaAttack);
+                if (assaHP < 0 && mageHP < 0 && musicienHP < 0 && archerHP < 0) {
+                    document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
+                }
+                else{
+                    monsterSelectTarget();
+                    attackMonster("santa", santaAttack);
+                }
             }
             counterPlayerIncrement();
         default:
@@ -395,10 +437,10 @@ function updateHPM(){
     mageArmor = 5;
     musicienArmor = 10;
     archerArmor =  10;
-    if (assaHP > 0 || mageHP > 0 || musicienHP > 0 || archerHP > 0) {
+    if (assaHP < 0 && mageHP < 0 && musicienHP < 0 && archerHP < 0) {
         document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
     }
-    if (santaHP > 0 || knutalluxHP > 0 || knutalluxDeuxHP > 0 || knutalluxTroisHP >0) {
+    if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
         document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
     }
 }
@@ -517,54 +559,3 @@ function attackMonster(monsterName, monsterAttack){
         default:    
     }
 }
-
-/*function updateHPM(){
-    document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>MP : " + assaMP + "/10";
-    document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>MP : " + mageMP + "/20";
-    document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>MP : " + musicienMP + "/30";
-    document.getElementById("archerHPM").innerHTML = "PV : " + archerHP + "/40<br>MP : " + archerMP + "/30";
-    document.getElementById("santaHP").innerHTML = "PV : " + santaHP + "/140";
-    document.getElementById("knutalluxHP").innerHTML = "PV : " + knutalluxHP + "/80";
-    document.getElementById("knutalluxDeuxHP").innerHTML = "PV : " + knutalluxDeuxHP + "/80";
-    document.getElementById("knutalluxTroisHP").innerHTML = "PV : " + knutalluxTroisHP + "/80";
-
-    if (assaHP < 1) {
-        document.getElementById('assa').style.display='none';
-    }
-    if (mageHP < 1) {
-        document.getElementById('mage').style.display='none';
-    }
-    if (musicienHP < 1) {
-        document.getElementById('musicien').style.display='none';
-    }
-    if (archerHP < 1) {
-        document.getElementById('archer').style.display='none';
-    }
-    if (santaHP < 1) {
-        document.getElementById('santa').style.style.display='none';
-        document.getElementById('santaButton').style.display='none';
-    }
-    if (knutalluxHP < 1) {
-        document.getElementById('knutallux').style.display='none';
-        document.getElementById('knutalluxButton').style.display='none';
-    }
-    if (knutalluxDeuxHP < 1) {
-        document.getElementById('knutalluxdeux').style.display='none';
-        document.getElementById('knutalluxdeuxButton').style.display='none';
-    }
-    if (knutalluxTroisHP < 1){
-        document.getElementById('knutalluxTrois').style.display='none';
-        document.getElementById('knutalluxTroisButton').style.display='none';
-    }
-    assaArmor = 10;
-    mageArmor = 5;
-    musicienArmor = 10;
-    archerArmor =  10;
-    if (assaHP > 0 || mageHP > 0 || musicienHP > 0 || archerHP > 0) {
-        document.getElementById("combatLog").innerHTML = "Les aventuriers sont tous morts";
-    }
-    if (santaHP > 0 || knutalluxHP > 0 || knutalluxDeuxHP > 0 || knutalluxTroisHP >0) {
-        document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
-    }
-
-}*/
