@@ -1,7 +1,5 @@
 //initialisation des variables
-
 //var assa
-
 var assa = document.getElementById("assa");
 var tourAssa = document.getElementById('assaHPM');
 var assaHP = 50;
@@ -78,13 +76,12 @@ var nbTour = 0;
 var speciale = document.getElementById("button2");
 var defense = document.getElementById("button3");*/
 
-
+//ici je joue mes tours de jeux
 function round() {
-    console.log("je rentre dans la fonction")
-    
-            
+    console.log("je rentre dans la fonction")       
     switch (compteurJoueur){
         case 0:
+            //tour assa (vérification mort ou tour joueur)
             console.log("assa");
             document.getElementById('assaImg').style.right = '40%' ;
             document.getElementById('assaHPM').style.color='black';
@@ -99,6 +96,7 @@ function round() {
             }
             break;
         case 1:
+            //tour mage (vérification mort ou tour joueur)
             console.log("mage");
             document.getElementById('mageHPM').style.color='black';
             document.getElementById('assaHPM').style.color='white';
@@ -114,6 +112,7 @@ function round() {
             break;
         case 2:
             console.log("musicien");
+            //tour musicien (vérification mort ou tour joueur)
             document.getElementById('musicienHPM').style.color='black';
             document.getElementById('mageHPM').style.color='white';
             if (musicienHP <= 0) {
@@ -128,6 +127,7 @@ function round() {
             break;
         case 3:
             console.log("archer");
+            //tour archer (vérification mort ou tour joueur)
             document.getElementById('archerHPM').style.color='black';
             document.getElementById('musicienHPM').style.color='white';
             if (archerHP <= 0) {
@@ -139,9 +139,10 @@ function round() {
                 TourJoueur("archer", archerAttack);}
 
             break;
-                
+        // passage tour monstre                
         case 4:
             console.log("knutallux");
+            //tour knutallux (vérification mort ou tour monstre)
             document.getElementById("archer").style.right = "10%";
             if (knutalluxHP <= 0){
                 document.getElementById('knutallux').style.display = 'none';
@@ -154,6 +155,7 @@ function round() {
             counterPlayerIncrement();
             break;
         case 5:
+            //tour knutalluxDeux (vérification mort ou tour monstre)
             console.log("knutalluxDeux");
             if (knutalluxDeuxHP <= 0){
                 document.getElementById('knutalluxDeux').style.display = 'none';
@@ -166,6 +168,7 @@ function round() {
             counterPlayerIncrement();
             break;
         case 6:
+            //tour knutalluxTrois (vérification mort ou tour monstre)
             console.log("knutalluxTrois");
             if (knutalluxTroisHP <= 0){
                 document.getElementById('knutalluxTrois').style.display = 'none';
@@ -178,6 +181,7 @@ function round() {
             counterPlayerIncrement(); 
             break;
         case 7:
+            //tour santa (vérification mort ou tour monstre)
             console.log("santa");
             if (santaHP <=0){
                 document.getElementById('santa').style.display = 'none';
@@ -194,11 +198,12 @@ function round() {
 
 
 }
-
+// tour joueur aparition bouton dans le combatLog + fonction incrémentation du compteur de tour
 function TourJoueur(charaName, charaAttack, charaPM) {
-    document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='specialCount(\""+charaName+"\","+charaAttack+","+charaPM+")' value='Attaque Speciale'> ";
+    document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+")' value='Attaque Speciale'> ";
 }
 
+//ici je fait les attaque du monstre
 function attaque(charaName, damage){
     switch(monstreCible){
         case 0:
@@ -226,6 +231,7 @@ function attaque(charaName, damage){
 
 }
 
+//ici je définie le bouton défense
 function protect(charaName,){
     if (charaName == "assa") {
         assaArmor = assaArmor *2;
@@ -245,7 +251,8 @@ function protect(charaName,){
 
 }
 
-function specialCount(charaName, charaSpecial, charaSpecialCounter){
+//test si special déjà lancer ne peut etre relancer au tour d'après
+/*function specialCount(charaName, charaSpecial, charaSpecialCounter){
     if (charaSpecial == 1){
         document.getElementById("combatLog").innerHTML = charaName + "ne peux pas utiliser son special. <br> <inpute type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
         charaSpecialCounter -= 1;
@@ -253,10 +260,11 @@ function specialCount(charaName, charaSpecial, charaSpecialCounter){
     else {
         special()
     }
-}
+}*/
 
+//bouton special
 function special(charaName, charaAttack, charaPM, damage, charaSpecialCounter){
-    if (charaSpecialCounter == 0){
+    //if (charaSpecialCounter == 0){
         if (charaPM < 5) {
         document.getElementById("combatLog").innerHTML = charaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
         }
@@ -344,8 +352,8 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecialCounter){
     }
     
 
-}
-
+//}
+//je met a jour les HP et PM
 function updateHPM(){
     document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>PM : " + assaMP + "/10";
     document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>PM : " + mageMP + "/20";
@@ -394,12 +402,12 @@ function updateHPM(){
         document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
     }
 }
-
+// ici je met a jour le compeur de round
 function counterPlayerIncrement() {
     compteurJoueur += 1;
     returnToStartingState()
 }
-
+// je réinitialise le compteur de round
 function returnToStartingState() {
     if (compteurJoueur == 8) {
         nbTour++;
@@ -407,15 +415,16 @@ function returnToStartingState() {
     }
     document.getElementById("combatLog").innerHTML = "C'est le tour "+ nbTour + " !<br> <input type='button' onclick='round()' value='NEXT'>";
 }
-
+//onmouseover pour afficher pv monstre
 function afficherHP(id) {
     document.getElementById(id).style.visibility='visible'
 }
-  
+
+//onmouseout cacher pv monstre  
 function cacherHP(id) {
     document.getElementById(id).style.visibility='hidden'
 }
-
+// bouton sélection du monstre cible
 function targetSelect(num){
     monstreCible = num;
     
@@ -453,6 +462,7 @@ function targetSelect(num){
 
 }
 
+// ici je définis une cible aléatoire pour le monstre
 function monsterSelectTarget(){
     monsterTarget = Math.floor(Math.random() * 4);
     if (monsterTarget == 0 && assaHP <= 0) {
@@ -473,7 +483,7 @@ function monsterSelectTarget(){
     }
 
 }
-
+// je récupère la cible et réduis les pv du joueur
 function attackMonster(monsterName, monsterAttack){
     switch(monsterTarget){
         case 0:
@@ -508,7 +518,7 @@ function attackMonster(monsterName, monsterAttack){
     }
 }
 
-function updateHPM(){
+/*function updateHPM(){
     document.getElementById("assaHPM").innerHTML = "PV : " + assaHP + "/50<br>MP : " + assaMP + "/10";
     document.getElementById("mageHPM").innerHTML = "PV : " + mageHP + "/40 <br>MP : " + mageMP + "/20";
     document.getElementById("musicienHPM").innerHTML = "PV : " + musicienHP + "/30<br>MP : " + musicienMP + "/30";
@@ -557,4 +567,4 @@ function updateHPM(){
         document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
     }
 
-}
+}*/
