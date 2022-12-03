@@ -246,17 +246,18 @@ function round() {
 
 }
 // tour joueur aparition bouton dans le combatLog + fonction incrémentation du compteur de tour
-function TourJoueur(charaName, charaAttack, charaPM, charaSpecial) {
-    if (charaSpecial == false){
-        document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
+function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialCounter) {
+    console.log(charaSpecial);
+    if (charaSpecial == true){
+        for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
+        document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
+        }
     }
     else{
-        for (i=0; i < 1 ; i++){
-            document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
-            charaSpecial = false;
-        }
-        
+        document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
+        charaSpecial = false;        
     }
+    console.log(charaSpecial)
 }
 
 //ici je fait les attaque du monstre
