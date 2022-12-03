@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Battler</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" async></script>
+</head>
+<body>
+    <!-- Screen content -->
+    <div id="screen">
+
+        <img src="img/volume.png" alt="Volum panel" id="volume">
+
+        <!-- Dialogs display -->
+        <div id="dialoguebox">
+            <p id="dialogue">Le combat commence.</p>
+        </div> 
+
+        <!-- Battleground -->
+        <div id="battlefield">
+
+            <!-- Enemies side -->
+            <div id="enemiesfield">
+                <div id="backlane">
+                    <div id="enemy1" class="enemies">
+                        <img id="enemysprite1" src="img/enemy1.gif" class="enemiessprites" alt="">
+                        <progress id="enemy1hp" class="enemieshp" max="" value=""> </progress>
+                        <span id="enemyinfo1" class="enemiesinfo"></span>
+                    </div>
+                    
+                </div>
+                <div id="frontlane">
+                    <div id="enemy2" class="enemies">
+                        <img id="enemysprite2" src="img/enemy2.gif" class="enemiessprites" alt="">
+                        <progress id="enemyhp2" class="enemieshp" max="" value=""> </progress>
+                        <span id="enemyinfo2" class="enemiesinfo"></span>
+                    </div>
+                    <div id="enemy3" class="enemies">
+                        <img id="enemysprite3" src="img/enemy2.gif" class="enemiessprites" alt="">
+                        <progress id="enemyhp3" class="enemieshp" max="" value=""> </progress>
+                        <span id="enemyinfo3" class="enemiesinfo"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Heroes side -->
+            <div id="heroesfield">
+                <div id="hero1" class="heroes">
+                    <img src="img/hero1.gif" alt="" id="herosprite1" class="heroessprites">
+                    <span id="heroinfo1" class="info"></span>
+                    <span class="heroselection">▼</span>
+                </div>
+                <div id="hero2" class="heroes">
+                    <img src="img/hero2.gif" alt="" id="herosprite2" class="heroessprites">
+                    <span id="heroinfo2" class="info"></span>
+                    <span class="heroselection">▼</span>
+                </div>
+                <div id="hero3" class="heroes">
+                    <img src="img/hero3.gif" alt="" id="herosprite3" class="heroessprites">
+                    <span id="heroinfo3" class="info"></span>
+                    <span class="heroselection">▼</span>
+                </div>
+                <div id="hero4" class="heroes">
+                    <img src="img/hero4.gif" alt="" id="herosprite4" class="heroessprites">
+                    <span id="heroinfo4" class="info"></span>
+                    <span class="heroselection">▼</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Commands and characters info -->
+        <div id="battleinfo">
+
+            <!-- Actions window -->
+            <div id="actions">
+                <div id="action1" class="actions">
+                    <span class="selection">▶</span>
+                    <p>Attaque</p>
+                </div>
+                <div id="action2" class="actions">
+                    <span class="selection">▶</span>
+                    <p>Spécial</p>
+                    <p id="manacost">10MP</p>
+                </div>
+                <div id="action3" class="actions">
+                    <span class="selection">▶</span>
+                    <p>Défense</p>
+                </div>
+            </div>
+    
+            <!-- Heroes stats -->
+            <div id="heroesstats">
+                <div id="herostats1" class="herostats">
+                    <p id="heroname1" class="heroesname"></p>
+                    <p id="herohptext1" class="heroeshptext"><span class="big"></span></p>
+                    <progress id="herohp1" class="heroeshp" max="" value=""> </progress>
+                    <p id="heromptext1" class="heroesmptext"><span class="big"></span></p>
+                    <progress id="heromp1" class="heroesmp" max="" value=""> </progress>
+                   
+                </div>
+                <div id="herostats2" class="herostats">
+                    <p id="heroname2" class="heroesname"></p>
+                    <p id="herohptext2" class="heroeshptext"><span class="big"></span></p>
+                    <progress id="herohp2" class="heroeshp" max="" value=""> </progress>
+                    <p id="heromptext2" class="heroesmptext"><span class="big"></span></p>
+                    <progress id="heromp2" class="heroesmp" max="" value=""> </progress>
+                </div>
+                <div id="herostats3" class="herostats">
+                    <p id="heroname3" class="heroesname"></p>
+                    <p id="herohptext3" class="heroeshptext"><span class="big"></span></p>
+                    <progress id="herohp3" class="heroeshp" max="" value=""> </progress>
+                    <p id="heromptext3" class="heroesmptext"><span class="big"></span></p>
+                    <progress id="heromp3" class="heroesmp" max="" value=""> </progress>
+                </div>
+                <div id="herostats4" class="herostats">
+                    <p id="heroname4" class="heroesname"></p>
+                    <p id="herohptext4" class="heroeshptext"><span class="big"></span></p>
+                    <progress id="herohp4" class="heroeshp" max="" value=""> </progress>
+                    <p id="heromptext4" class="heroesmptext"><span class="big"></span></p>
+                    <progress id="heromp4" class="heroesmp" max="" value=""> </progress>
+                </div>
+    
+            </div>
+        </div>
+
+        
+
+    </div>
+    <div id="defeatscreen">
+        <p>GAME OVER</p>
+    </div>
+
+    <div id="victoryscreen">
+        <div id="message">Félicitations, vous avez gagné le combat !</div>
+        <div id="heroesVictory">
+            <img src="img/hero_victory1.png" alt="Victory hero 1">
+            <img src="img/hero_victory2.png" alt="Victory hero 2">
+            <img src="img/hero_victory3.png" alt="Victory hero 3">
+            <img src="img/hero_victory4.png" alt="Victory hero 4">
+        </div>
+        
+    </div>
+</body>
+</html>

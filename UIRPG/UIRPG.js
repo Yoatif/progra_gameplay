@@ -6,6 +6,7 @@ var assaHP = 50;
 var assaMP = 10;
 var assaArmor = 10;
 var assaAttack = 10;
+var assaSpecial = false;
 var assaSpecialCounter = 0;
 var mortAssa = false;  
 
@@ -16,6 +17,7 @@ var mageHP = 40;
 var mageMP = 20;
 var mageArmor = 5;
 var mageAttack = 15;
+var mageSpecial = false;
 var mageSpecialCounter = 0;
 var mortMage = false;
 
@@ -26,6 +28,7 @@ var archerHP = 30;
 var archerMP = 30;
 var archerArmor = 10;
 var archerAttack = 15;
+var archerSpecial = false;
 var archerSpecialCounter = 0;
 var mortArcher = false;
 
@@ -36,6 +39,7 @@ var musicienHP = 40;
 var musicienMP = 30;
 var musicienArmor = 10;
 var musicienAttack = 15;
+var musicienSpecial = false;
 var musicienSpecialCounter = 0;
 var mortMusicien = false;
 
@@ -65,6 +69,7 @@ var knutalluxTroisAttack = 20;
 var mortKnutalluxTrois = false;
 
 //var combat
+var damage = assaAttack;
 var ennemyTarget = "santa";
 var compteurMonstre = 0;
 var compteurJoueur = 0;
@@ -242,7 +247,7 @@ function round() {
 }
 // tour joueur aparition bouton dans le combatLog + fonction incrémentation du compteur de tour
 function TourJoueur(charaName, charaAttack, charaPM) {
-    document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+")' value='Attaque Speciale'> ";
+    document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
 }
 
 //ici je fait les attaque du monstre
@@ -306,7 +311,7 @@ function protect(charaName,){
 
 //bouton special
 function special(charaName, charaAttack, charaPM, damage, charaSpecialCounter){
-    //if (charaSpecialCounter == 0){
+    //if (assaSpecial == false){
         if (charaPM < 5) {
         document.getElementById("combatLog").innerHTML = charaName + " n'a pas suffisament de point d'action ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protectChara(\""+charaName+"\")' value='Defense'>";
         }
@@ -315,31 +320,33 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecialCounter){
             switch(monstreCible){
                 case 0:
                     assaMP = assaMP - 5;
-                    santaHP = santaHP - damage;
-                    santaHP = santaHP - damage;
+                    
+                    console.log(santaHP);
+                    console.log(damage);
+                    santaHP = santaHP - (damage*2);
                     updateHPM();
-                    document.getElementById("combatLog").innerHTML = charaName + " attaque 2 fois !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (1) " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     break;
                 case 1:
                     assaMP = assaMP - 5;
                     knutalluxHP = knutalluxHP - damage;
                     knutalluxHP = knutalluxHP - damage;
                     updateHPM();
-                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     break;
                 case 2:
                     assaMP = assaMP - 5;
                     knutalluxDeuxHP = knutalluxDeuxHP - damage;
                     knutalluxDeuxHP = knutalluxDeuxHP - damage;
                     updateHPM();
-                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     break;
                 case 3:
                     assaMP = assaMP - 5;
                     knutalluxTroisHP = knutalluxTroisHP - damage;
                     knutalluxTroisHP = knutalluxTroisHP - damage;
                     updateHPM();
-                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + damage + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                    document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     break;
                 default:
             }
