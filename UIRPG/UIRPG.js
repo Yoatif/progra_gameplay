@@ -249,13 +249,13 @@ function round() {
 function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialCounter) {
     console.log(charaSpecial);
     if (charaSpecial == true){
-        for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
-        document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
+        for (charaSpecialCounter = 0; charaSpecialCounter < 9; charaSpecialCounter++){
+            document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
         }
     }
     else{
         document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
-        charaSpecial = false;        
+                
     }
     console.log(charaSpecial)
 }
