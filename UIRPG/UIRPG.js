@@ -1,80 +1,80 @@
 //initialisation des variables
 //var assa
-var assa = document.getElementById("assa");
-var tourAssa = document.getElementById('assaHPM');
-var assaHP = 50;
-var assaMP = 10;
-var assaArmor = 10;
-var assaAttack = 10;
-var assaSpecial = false;
-var assaSpecialCounter = 0;
-var mortAssa = false;  
+let assa = document.getElementById("assa");
+let tourAssa = document.getElementById('assaHPM');
+let assaHP = 50;
+let assaMP = 10;
+let assaArmor = 10;
+let assaAttack = 10;
+let assaSpecial = false;
+let assaSpecialCounter = 0;
+let mortAssa = false;  
 
 //mage
-var mage = document.getElementById("mage");
-var tourMage = document.getElementById('mageHPM');
-var mageHP = 40;
-var mageMP = 20;
-var mageArmor = 5;
-var mageAttack = 15;
-var mageSpecial = false;
-var mageSpecialCounter = 0;
-var mortMage = false;
+let mage = document.getElementById("mage");
+let tourMage = document.getElementById('mageHPM');
+let mageHP = 40;
+let mageMP = 20;
+let mageArmor = 5;
+let mageAttack = 15;
+let mageSpecial = false;
+let mageSpecialCounter = 0;
+let mortMage = false;
 
 //archer
-var archer = document.getElementById("archer");
-var tourArcher = document.getElementById('archerHPM');
-var archerHP = 30;
-var archerMP = 30;
-var archerArmor = 10;
-var archerAttack = 15;
-var archerSpecial = false;
-var archerSpecialCounter = 0;
-var mortArcher = false;
+let archer = document.getElementById("archer");
+let tourArcher = document.getElementById('archerHPM');
+let archerHP = 30;
+let archerMP = 30;
+let archerArmor = 10;
+let archerAttack = 15;
+let archerSpecial = false;
+let archerSpecialCounter = 0;
+let mortArcher = false;
 
 //var musicien
-var musicien = document.getElementById("musicien");
-var tourMusicien = document.getElementById('musicienHPM');
-var musicienHP = 40;
-var musicienMP = 30;
-var musicienArmor = 10;
-var musicienAttack = 15;
-var musicienSpecial = false;
-var musicienSpecialCounter = 0;
-var mortMusicien = false;
+let musicien = document.getElementById("musicien");
+let tourMusicien = document.getElementById('musicienHPM');
+let musicienHP = 40;
+let musicienMP = 30;
+let musicienArmor = 10;
+let musicienAttack = 15;
+let musicienSpecial = false;
+let musicienSpecialCounter = 0;
+let mortMusicien = false;
 
 // Init var monstre
 //var Santa
-var santa = document.getElementById("santaImg");
-var santaHP = 140;
-var santaAttack = 30;
-var mortSanta = false;
+let santa = document.getElementById("santaImg");
+let santaHP = 140;
+let santaAttack = 30;
+let mortSanta = false;
 
 //var Knutallux
-var knutallux = document.getElementById("knutallux");
-var knutalluxHP = 80;
-var knutalluxAttack = 20;
-var mortKnutallux = false;
+let knutallux = document.getElementById("knutallux");
+let knutalluxHP = 80;
+let knutalluxAttack = 20;
+let mortKnutallux = false;
 
 //var KnutalluxDeux
-var knutalluxDeux = document.getElementById("knutalluxDeux");
-var knutalluxDeuxHP = 80;
-var knutalluxDeuxAttack = 20;
-var mortKnutalluxDeux = false;
+let knutalluxDeux = document.getElementById("knutalluxDeux");
+let knutalluxDeuxHP = 80;
+let knutalluxDeuxAttack = 20;
+let mortKnutalluxDeux = false;
 
 // var KnutalluxTrois
-var knutalluxTrois = document.getElementById("knutalluxTrois");
-var knutalluxTroisHP = 80;
-var knutalluxTroisAttack = 20;
-var mortKnutalluxTrois = false;
+let knutalluxTrois = document.getElementById("knutalluxTrois");
+let knutalluxTroisHP = 80;
+let knutalluxTroisAttack = 20;
+let mortKnutalluxTrois = false;
 
 //var combat
-var damage = assaAttack;
-var ennemyTarget = "santa";
-var compteurMonstre = 0;
-var compteurJoueur = 0;
-var monsterTarget = " ";
-var nbTour = 0;
+let damage = assaAttack;
+let ennemyTarget = "santa";
+let compteurMonstre = 0;
+let compteurJoueur = 0;
+let monsterTarget = " ";
+let nbTour = 0;
 
 //Init var button
 /*var attaque = document.getElementById("button1");
@@ -100,7 +100,7 @@ function round() {
                 }
                 else{
                     document.getElementById("assa").style.right = "40%";
-                TourJoueur("assa", assaAttack);
+                TourJoueur("assa", assaAttack, assaMP, assaSpecial, assaSpecialCounter);
                 }
                 
    
@@ -121,7 +121,7 @@ function round() {
                 else{
                     document.getElementById("assa").style.right = "30%";
                     document.getElementById("mage").style.right = "30%";
-                    TourJoueur("mage", mageAttack);
+                    TourJoueur("mage", mageAttack, mageMP, mageSpecial, mageSpecialCounter);
                 }
             }
 
@@ -141,7 +141,7 @@ function round() {
                 else{
                     document.getElementById("mage").style.right = "20%";
                     document.getElementById("musicien").style.right = "30%";
-                    TourJoueur("musicien", musicienAttack);
+                    TourJoueur("musicien", musicienAttack, musicienMP, musicienSpecial, musicienSpecialCounter);
                 }
             }
 
@@ -161,7 +161,7 @@ function round() {
                 else{
                     document.getElementById("musicien").style.right = "20%";
                     document.getElementById("archer").style.right = "20%";
-                    TourJoueur("archer", archerAttack);}
+                    TourJoueur("archer", archerAttack, archerMP, archerSpecial, archerSpecialCounter);}
             }
 
             break;
@@ -340,6 +340,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     updateHPM();
                     document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (1) " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     charaSpecial = true;
+                    console.log(charaSpecial)
                     break;
                 case 1:
                     assaMP = assaMP - 5;
