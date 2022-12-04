@@ -367,6 +367,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     charaSpecial = true;
                     break;
                 default:
+                    console.log(assaSpecial);
             }
         }
         else if (charaName == "mage"){
