@@ -422,6 +422,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
             document.getElementById("combatLog").innerHTML = charaName + " tir une pluie de flèche !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             charaSpecial = true;
         }
+        return charaSpecial;
     }
     
 
