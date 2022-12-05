@@ -69,6 +69,9 @@ let knutalluxTroisAttack = 20;
 let mortKnutalluxTrois = false;
 
 //var combat
+let musicTheme = new Audio ('sound/Juhani_Junkala_Level 1.wav');
+musicTheme.loop = true;
+
 let damage = assaAttack;
 let ennemyTarget = "santa";
 let compteurMonstre = 0;
@@ -83,6 +86,7 @@ var defense = document.getElementById("button3");*/
 
 //ici je joue mes tours de jeux
 function round() {
+    musicTheme.play();
     console.log("je rentre dans la fonction")       
     switch (compteurJoueur){
         case 0:
