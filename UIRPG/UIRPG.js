@@ -260,26 +260,28 @@ function round() {
 // tour joueur aparition bouton dans le combatLog + fonction incrémentation du compteur de tour
 function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialCounter, charaAtk, charaDef) {
     console.log("charaSpe" +charaSpecial);
+    console.log("charaATK" + charaAtk);
+    console.log("charaDef" + charaDef);
     if (charaSpecial == true){
         for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
             document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
         }
     }
-    else if (charaAtk == true){
+    if (charaAtk == true){
         for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
             document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
         }
     }
-    else if (charaDef == true){
+    if (charaDef == true){
         for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
             document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
         }
     }
-    else{
+    if (!charaAtk && !charaDef && !charaSpecial){
         document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
                 
     }
-    console.log(charaSpecial)
+    console.log(charaSpecial);  
 }
 
 //ici je fait les attaque du monstre
