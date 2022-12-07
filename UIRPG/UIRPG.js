@@ -6,6 +6,8 @@ let assaHP = 50;
 let assaMP = 10;
 let assaArmor = 10;
 let assaAttack = 10;
+let assaAtk = false;
+let assaDef = false;
 let assaSpecial = false;
 let assaSpecialCounter = 0;
 let mortAssa = false;  
@@ -17,6 +19,8 @@ let mageHP = 40;
 let mageMP = 20;
 let mageArmor = 5;
 let mageAttack = 15;
+let mageAtk = false;
+let mageDef = false;
 let mageSpecial = false;
 let mageSpecialCounter = 0;
 let mortMage = false;
@@ -28,6 +32,8 @@ let archerHP = 30;
 let archerMP = 30;
 let archerArmor = 10;
 let archerAttack = 15;
+let archerAtk = false;
+let archerDef = false;
 let archerSpecial = false;
 let archerSpecialCounter = 0;
 let mortArcher = false;
@@ -39,6 +45,8 @@ let musicienHP = 40;
 let musicienMP = 30;
 let musicienArmor = 10;
 let musicienAttack = 15;
+let musicienAtk = false;
+let musicienDef = false;
 let musicienSpecial = false;
 let musicienSpecialCounter = 0;
 let mortMusicien = false;
@@ -104,7 +112,7 @@ function round() {
                 }
                 else{
                     document.getElementById("assa").style.right = "40%";
-                TourJoueur("assa", assaAttack, assaMP, assaSpecial, assaSpecialCounter);
+                TourJoueur("assa", assaAttack, assaMP, assaSpecial, assaSpecialCounter, assaAtk, assaDef);
                 }
                 
    
@@ -125,7 +133,7 @@ function round() {
                 else{
                     document.getElementById("assa").style.right = "30%";
                     document.getElementById("mage").style.right = "30%";
-                    TourJoueur("mage", mageAttack, mageMP, mageSpecial, mageSpecialCounter);
+                    TourJoueur("mage", mageAttack, mageMP, mageSpecial, mageSpecialCounter, mageAtk, mageDef);
                 }
             }
 
@@ -145,7 +153,7 @@ function round() {
                 else{
                     document.getElementById("mage").style.right = "20%";
                     document.getElementById("musicien").style.right = "30%";
-                    TourJoueur("musicien", musicienAttack, musicienMP, musicienSpecial, musicienSpecialCounter);
+                    TourJoueur("musicien", musicienAttack, musicienMP, musicienSpecial, musicienSpecialCounter, musicienAtk, musicienDef);
                 }
             }
 
@@ -165,7 +173,7 @@ function round() {
                 else{
                     document.getElementById("musicien").style.right = "20%";
                     document.getElementById("archer").style.right = "20%";
-                    TourJoueur("archer", archerAttack, archerMP, archerSpecial, archerSpecialCounter);}
+                    TourJoueur("archer", archerAttack, archerMP, archerSpecial, archerSpecialCounter, archerAtk, archerDef  );}
             }
 
             break;
@@ -250,11 +258,21 @@ function round() {
 
 }
 // tour joueur aparition bouton dans le combatLog + fonction incrémentation du compteur de tour
-function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialCounter) {
-    console.log(charaSpecial);
+function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialCounter, charaAtk, charaDef) {
+    console.log("charaSpe" +charaSpecial);
     if (charaSpecial == true){
-        for (charaSpecialCounter = 0; charaSpecialCounter < 9; charaSpecialCounter++){
+        for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
             document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> ";
+        }
+    }
+    else if (charaAtk == true){
+        for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
+            document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='protect(\""+charaName+"\")' value='Defense'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
+        }
+    }
+    else if (charaDef == true){
+        for (charaSpecialCounter = 0; charaSpecialCounter < 1; charaSpecialCounter++){
+            document.getElementById("combatLog").innerHTML = charaName + " se prépare à agir ! <br> <input type='button' onclick='attaque(\""+charaName+"\","+charaAttack+")' value='Attaque'> <input type='button' onclick='special(\""+charaName+"\","+charaAttack+","+charaPM+","+damage+")' value='Attaque Speciale'> ";
         }
     }
     else{
@@ -265,48 +283,65 @@ function TourJoueur(charaName, charaAttack, charaPM, charaSpecial, charaSpecialC
 }
 
 //ici je fait les attaque du monstre
-function attaque(charaName, damage){
+function attaque(charaName, damage, charaAtk){
     switch(monstreCible){
         case 0:
             santaHP = santaHP - damage;
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste au santa " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            charaAtk = true;
+            console.log("charaAtk" + charaAtk);
             break;
         case 1:
             knutalluxHP = knutalluxHP - damage;
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            charaAtk = true;
+            console.log("charaAtk" + charaAtk);
             break;
         case 2:
             knutalluxDeuxHP = knutalluxDeuxHP - damage;
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+            charaAtk = true;
+            console.log("charaAtk" + charaAtk);
             break;
         case 3:
             knutalluxTroisHP = knutalluxTroisHP -damage;
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " inflige " + damage + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
-            break;            
+            charaAtk = true;
+            console.log("charaAtk" + charaAtk);
+            break;
+        default:            
 
     }
 
 }
 
 //ici je définie le bouton défense
-function protect(charaName,){
+function protect(charaName,charaDef){
     if (charaName == "assa") {
         assaArmor = assaArmor *2;
         console.log("assaArmor =" + assaArmor);
+        charaDef = true;
+        console.log("charaDef" + charaDef);
     }
     else if (charaName == "mage") {
         mageArmor = mageArmor *2;
         console.log("mageArmor =" + mageArmor);
+        charaDef = true;
+        console.log("charaDef" + charaDef);
     }
     else if (charaName == "musicien") {
         musicienArmor = musicienArmor *2;
+        charaDef = true;
+        console.log("charaDef" + charaDef);
     }
     else {
         archerArmor = archerArmor *2;
+        charaDef = true;
+        console.log("charaDef" + charaDef);
     }
     document.getElementById("combatLog").innerHTML = charaName + " se prépare à se défendre !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
 
@@ -344,7 +379,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     updateHPM();
                     document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (1) " + santaHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     charaSpecial = true;
-                    console.log(charaSpecial)
+                    console.log("charaSpe" + charaSpecial);
                     break;
                 case 1:
                     assaMP = assaMP - 5;
@@ -353,6 +388,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     updateHPM();
                     document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (1) " + knutalluxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     charaSpecial = true;
+                    console.log("charaSpe" + charaSpecial);
                     break;
                 case 2:
                     assaMP = assaMP - 5;
@@ -361,6 +397,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     updateHPM();
                     document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (2) " + knutalluxDeuxHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     charaSpecial = true;
+                    console.log("charaSpe" + charaSpecial);
                     break;
                 case 3:
                     assaMP = assaMP - 5;
@@ -369,9 +406,10 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
                     updateHPM();
                     document.getElementById("combatLog").innerHTML = charaName + " fait une double attaque, il inflige " + (damage*2) + "dégâts !<br> Il reste a Knutallux (3) " + knutalluxTroisHP + " PV !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
                     charaSpecial = true;
+                    console.log("charaSpe" + charaSpecial);
                     break;
                 default:
-                    console.log(assaSpecial);
+                    console.log(charaSpecial);
             }
         }
         else if (charaName == "mage"){
@@ -380,6 +418,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
             document.getElementById("combatLog").innerHTML = charaName + " récite une incantation<br> <input type='button' onclick='attaque(\""+charaName+"\","+(charaAttack*2.5)+")' value='NEXT'>";
             //charaSpecialCounter = 1;
             charaSpecial = true;
+            console.log("charaSpe" + charaSpecial);
         }
         else if (charaName == "musicien"){
             if (assaHP < 50 && assaHP + 15 < 50) {
@@ -410,6 +449,7 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " commence un puissant riff, de sa bouzouki et soigne ses alliés !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             charaSpecial = true;
+            console.log("charaSpe" + charaSpecial);
         }
         else{
             
@@ -421,9 +461,9 @@ function special(charaName, charaAttack, charaPM, damage, charaSpecial){
             updateHPM();
             document.getElementById("combatLog").innerHTML = charaName + " tir une pluie de flèche !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             charaSpecial = true;
+            console.log("charaSpe" + charaSpecial);
         }
-        return charaSpecial;
-    }
+}
     
 
 //}
