@@ -165,6 +165,7 @@ function round() {
             document.getElementById('musicienHPM').style.color='white';
             if (archerHP <= 0) {
                 document.getElementById("combatLog").innerHTML = "L'archer est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
+                
             }
             else {
                 if (santaHP < 0 && knutalluxHP < 0 && knutalluxDeuxHP < 0 && knutalluxTroisHP <0) {
