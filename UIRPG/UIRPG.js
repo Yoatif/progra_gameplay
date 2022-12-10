@@ -94,15 +94,18 @@ var defense = document.getElementById("button3");*/
 
 //ici je joue mes tours de jeux
 function round() {
+    //play loop musicTheme
     musicTheme.play();
-    console.log("je rentre dans la fonction")       
+    console.log("je rentre dans la fonction")
+    //passage tour joueur / monstre       
     switch (compteurJoueur){
         case 0:
-            //tour assa (vérification mort ou tour joueur)
+            //tour assa 
             console.log("assa");
-            document.getElementById('assaImg').style.right = '40%' ;
+            //je déplace l'assa et modifie sa couleur afin de visualiser son tour
             document.getElementById('assaHPM').style.color='black';
             document.getElementById('archerHPM').style.color='white';
+            //vérification assa en vie  si oui faire son tour de jeu
             if (assaHP <= 0) {
                 document.getElementById("combatLog").innerHTML = "L'assasin est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
@@ -114,15 +117,14 @@ function round() {
                     document.getElementById("assa").style.right = "40%";
                 TourJoueur("assa", assaAttack, assaMP, assaSpecial, assaSpecialCounter, assaAtk, assaDef);
                 }
-                
-   
             }
             break;
         case 1:
-            //tour mage (vérification mort ou tour joueur)
+            //tour mage
             console.log("mage");
             document.getElementById('mageHPM').style.color='black';
             document.getElementById('assaHPM').style.color='white';
+            //vérification assa en vie  si oui faire son tour de jeu
             if (mageHP <= 0) {
                 document.getElementById("combatLog").innerHTML = "Le mage est mort !<br> <input type='button' onclick='counterPlayerIncrement()' value='NEXT'>";
             }
@@ -131,6 +133,7 @@ function round() {
                     document.getElementById("combatLog").innerHTML = "Les monstres sont tous morts";
                 }
                 else{
+                    //assa retourne a la position de départ et mag s'avance
                     document.getElementById("assa").style.right = "30%";
                     document.getElementById("mage").style.right = "30%";
                     TourJoueur("mage", mageAttack, mageMP, mageSpecial, mageSpecialCounter, mageAtk, mageDef);
@@ -199,6 +202,7 @@ function round() {
             }
             counterPlayerIncrement();
             break;
+        //début tour monstre.
         case 5:
             //tour knutalluxDeux (vérification mort ou tour monstre)
             console.log("knutalluxDeux");
