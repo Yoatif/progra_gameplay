@@ -7,36 +7,50 @@
 
     <script>
 
-    //varriable de configuration de la fenètre de jeu, et de la gestion des scènenes a appeler.
+        //varriable de configuration de la fenètre de jeu, et de la gestion des scènenes a appeler.
     var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
+        type: Phaser.AUTO,
+        //largeur de la fenetre 
+        width: 800,
+        //hauteur 
+        height: 600,
+        //variable d'appel de la scene
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+            }
+        };
+
+
+    //instancie le jeu en utilisant var config
+    var game = new Phaser.Game(config);
+
+
+    //fonction de chargement des éléments du jeu (asset/tiled/audio etc...)
+    function preload ()
+    {
+        //this.load.'objet' affecte un chemin a une clef
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('bomb', 'assets/bomb.png');
+        //charge le spritesheet du/des personnage et définie la tailles de la vignette pour les animations
+        this.load.spritesheet('dude', 'assets/dude.png',
+            { frameWidth: 32, frameHeight: 48 }
+        );
     }
-};
 
+    //
+    function create ()
+    {
+        //indique a phaser de créer une image de largeur X et de hauteur Y
+        this.add.image(400, 300, 'sky');
+    }
 
-//create the game
-var game = new Phaser.Game(config);
-
-
-//loading function for assets and sound.
-function preload ()
-{
-}
-
-//world rules and mechanics
-function create ()
-{
-}
-
-function update ()
-{
-}
+    function update ()
+    {
+    }
     </script>
 
 </body>
