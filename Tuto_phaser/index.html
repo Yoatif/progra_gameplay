@@ -7,6 +7,7 @@
 
     <script>
 
+        //les fonctions créé son stocké après la fonction update du moteur phaser
         //varriable de configuration de la fenètre de jeu, et de la gestion des scènenes a appeler.
     var config = {
         type: Phaser.AUTO,
@@ -22,7 +23,7 @@
             gravity: { y: 300 },
             debug: true
             }
-        },
+        },  
         scene: {
             preload: preload,
             create: create,
@@ -134,11 +135,21 @@
         if (cursors.up.isDown && player.body.touching.down){
             player.setVelocityY(-330);
         }
+        //créé l'affichage du score
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     }
 
+
+    //fonction ce déclanchant au contact d'une étoile
     function collectStar (player, star){
 
+        //l'étoile disparais lors du collider
         star.disableBody(true, true);
+
+        //met a jour le score lors du collider
+        score += 10;
+        scoreText.setText('score: ' + score);
+
     }
     </script>
 
