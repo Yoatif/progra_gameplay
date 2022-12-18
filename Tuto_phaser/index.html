@@ -39,6 +39,7 @@
     let player;
     let score = 0;
     let scoreText;
+    let bombs;
    
 
     //fonction de chargement des éléments du jeu (asset/tiled/audio etc...)
@@ -109,6 +110,13 @@
 
     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
+    //création des bombes et les ajoutes dans un groupe 
+    bombs = this.physics.add.group();
+    //définie l'effet lors de la collision, joueur + bombe lance la fonction hitbomb
+    this.physics.add.collider(bombs, platforms);
+    this.physics.add.collider(player, bombs, hitBomb, null, this);
+    
+
 });
         
     }
@@ -149,7 +157,29 @@
         //met a jour le score lors du collider
         score += 10;
         scoreText.setText('score: ' + score);
+        if (stars.countActive(true) === 0)
+    {
+        stars.children.iterate(function (child) {
 
+            child.enableBody(true, child.x, 0, true, true);
+
+        });
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        
+    }
+
+    }
+
+    function hitBomb (player, bomb){
+        this.physics.pause();
+
+        player.setTint(0xff0000);
+
+        player.anims.play('turn');
+
+        gameOver = true;
     }
     </script>
 
