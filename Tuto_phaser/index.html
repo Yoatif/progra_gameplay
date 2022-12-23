@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.6/dist/phaser-arcade-physics.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser-arcade-physics.min.js"></script>
 </head>
 <body>
 
@@ -51,7 +51,7 @@
         this.load.image('ground', 'assets/platform.png');
         this.load.image('star', 'assets/star.png');
         this.load.image('bomb', 'assets/bomb.png');
-        //charge le spritesheet du/des personnage et définie la tailles de la vignette pour les animations
+        //charge le spritesheet du/des dudennage et définie la tailles de la vignette pour les animations
         this.load.spritesheet('dude', 'assets/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
@@ -59,129 +59,110 @@
     
     function create ()
     {
-        //indique a phaser de créer une image de largeur X et de hauteur Y
-        this.add.image(400, 300, 'sky');
-        //la variable platforms prend la proprièté staticGroup 
-        platforms = this.physics.add.staticGroup();
-        //crée les platforms depuis le point X, Y, et lui applique une échelle nécéssitant le refesh de la platform
-        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-        platforms.create(600, 400, 'ground');
-        platforms.create(50, 250, 'ground');
-        platforms.create(750, 220, 'ground');
+        //ici le code de la fonction create
+        this.add.image(400, 300, 'sky')
 
-        //création du joueur
-        player = this.physics.add.sprite(100, 450, 'dude');
+        this.platforms = this.physics.add.staticGroup();
+        this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+        this.platforms.create(750, 230, 'ground');
 
-        player.setBounce(0.2);
-        player.setCollideWorldBounds(true);
-        this.physics.add.collider(player, platforms);
-        /*
-        créer les animations du personnage, l'attribue a une touche
-        */
-        cursors = this.input.keyboard.createCursorKeys();
+        this.player = this.physics.add.sprite(100, 450, 'dude');
+        this.player.setBounce(0.2);
+        this.player.setCollideWorldBounds(true);
+        this.physics.add.collider(this.player, this.platforms);
         this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-            frameRate: 10,
-            repeat: -1
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', {start:0,end:3}),
+        frameRate: 10,
+        repeat: -1
         });
-
         this.anims.create({
-            key: 'turn',
-            frames: [ { key: 'dude', frbame: 4 } ],
-            frameRate: 20
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4 } ],
+        frameRate: 20
         });
-
         this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: -1
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', {start:5,end:8}),
+        frameRate: 10,
+        repeat: -1
+        });
+        this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.scoreText=this.add.text(16,16,'score: 0',{fontSize:'32px',fill:'#000'});
+        //affiche un texte à l’écran, pour le score
+        this.stars = this.physics.add.group({
+        key: 'star', repeat: 11,
+        setXY: { x: 12, y: 0, stepX: 70 }
         });
 
-        //création des collectible, de leurs proprièté 
-        stars = this.physics.add.group({
-            key: 'star',
-            repeat: 11,
-            setXY: { x: 12, y: 0, stepX: 70 }
-        });
-
-        this.physics.add.collider(stars, platforms);
-        this.physics.add.overlap(player, stars, collectStar, null, this);
-        stars.children.iterate(function (child) {
-
-    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
-    //création des bombes et les ajoutes dans un groupe 
-    /*bomb = this.physics.add.group({
-        key:'bomb',
-        repeat:1
-    });
-    //définie l'effet lors de la collision, joueur + bombe lance la fonction hitbomb
-    this.physics.add.collider(bomb, platforms);
-    this.physics.add.collider(player, bomb, hitBomb, null, this);*/
+        this.physics.add.collider(this.stars, this.platforms);
+        //et collisionne avec les plateformes
+        this.physics.add.overlap(this.player, this.stars);
+        //le contact dude/étoile ne génère pas de collision (overlap)
+        //mais en revanche cela déclenche une fonction collectStar
+        this.bombs = this.physics.add.group();
+        this.physics.add.collider(this.bombs, this.platforms);
+        this.physics.add.collider(this.player, this.bombs);
     
 
-});
+    };
         
-    }
+    
     //function de mise a jour des boucles
     function update ()
     {
-        //vérifie si la touche est true, puis lance le déplacement et son animation
-        if (cursors.left.isDown){
-
-            player.setVelocityX(-160);
-            player.anims.play('left', true);
-        }
-        else if (cursors.right.isDown){
-
-            player.setVelocityX(160);
-            player.anims.play('right', true);
-        }
-        else{
-
-            player.setVelocityX(0);
-            player.anims.play('turn');
-        }
-
-        if (cursors.up.isDown && player.body.touching.down){
-            player.setVelocityY(-330);
-        }
-        //créé l'affichage du score
-        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        //ici le code de la fonction update
+        if (this.gameOver){return;}
+                if (this.cursors.left.isDown){ //si la touche gauche est appuyée
+                    this.player.setVelocityX(-240); //alors vitesse négative en X
+                    this.player.anims.play('left', true); //et animation => gauche
+                }
+                else if (this.cursors.right.isDown){ //sinon si la touche droite est appuyée
+                    this.player.setVelocityX(240); //alors vitesse positive en X
+                    this.player.anims.play('right', true); //et animation => droite
+                }
+                else{ // sinon
+                    this.player.setVelocityX(0); //vitesse nulle
+                    this.player.anims.play('turn'); //animation fait face caméra
+                }
+                if (this.cursors.up.isDown && this.player.body.touching.down){
+                //si touche haut appuyée ET que le perso touche le sol
+                this.player.setVelocityY(-590); //alors vitesse verticale négative
+                //(on saute)
+                }
     }
 
 
-    //fonction ce déclanchant au contact d'une étoile
-    function collectStar (player, star){
+    function collectStar(player, star){
+        this.star.disableBody(true, true); // l’étoile disparaît
+            this.score += 10; //augmente le score de 10
+            this.scoreText.setText('Score: ' + this.score); //met à jour l’affichage du score
+            if (this.stars.countActive(true) === 0){// si toutes les étoiles sont prises
+                stars.children.iterate(function (child) {
+                child.enableBody(true, child.x, 0, true, true);
+                }); // on les affiche toutes de nouveau
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) :
+            Phaser.Math.Between(0, 400);
+            // si le perso est à gauche de l’écran, on met une bombe à droite
+            // si non, on la met à gauche de l’écran
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false; //elle n’est pas soumise à la gravité
+            }
 
-        //l'étoile disparais lors du collider
-        star.disableBody(true, true);
-
-        //met a jour le score lors du collider
-        score += 10;
-        scoreText.setText('score: ' + score);
-        if (stars.countActive(true) === 0){
-
-        stars.children.iterate(function (child) {
-            child.enableBody(true, child.x, 0, true, true);
-        });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
+    }
         
-    }
+        function hitBomb(player, bomb){
+            this.physics.pause();
+            player.setTint(0xff0000);
+            player.anims.play('turn');
+            gameOver = true;
+        }
 
-    }
-
-    function hitBomb (player, bomb){
-
-        this.physics.pause();
-        player.setTint(0xff0000);
-        player.anims.play('turn');
-        gameOver = true;
-    }
+    
     </script>
 
 </body>
