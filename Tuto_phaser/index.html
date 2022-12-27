@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--cette balise script permet d'atteindre les fichiers du moteur graphique-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.6.1/phaser-arcade-physics.min.js"></script>
 </head>
 <body>
@@ -8,18 +9,30 @@
     <script>
 
         //les fonctions créé son stocké après la fonction update du moteur phaser
-        //varriable de configuration de la fenètre de jeu, et de la gestion des scènenes a appeler.
+
+        //objet config permettant de configuer la fenètre de jeu, de la gestion des scènenes a appeler,
+        // ainsi que les physics a appliqué au jeu.
         var config = {
+
+                //le type, permet de définir la gestion du rendu. AUTO laisse le navigateur choisir. 
                 type: Phaser.AUTO,
+
+                //définie les dimmensions de la fenetre de jeu, 
+                //la map peut faire la taille que vous souhaitez (bon y'a une limite mais je ne sais plus a combien elle est),
                 width: 800,
                 height: 600,
+
+            
             physics: {
                     default: 'arcade',
                     arcade: {
+                        //définie la gravité, son orientation et l'affichage du débug.
                         gravity: { y: 300 },
                         debug: true
                     }
                 },
+
+            //définie l'ordre de lecture des scènes
             scene: {
                     init: init,
                     preload: preload,
@@ -28,9 +41,13 @@
                 }
             };
 
+            //la variable game permet de lancé le jeu selon les paramètres de config
             var game = new Phaser.Game(config);
+
+            //variable sortie de la fonction init car sinon y'a un bug ^^
             var score = 0;
 
+            //fonction permettant d'initialiser les variables. 
             function init(){
                 var platforms;
                 var player;
@@ -38,35 +55,54 @@
                 var stars;
                 var scoreText;
                 var bomb;
+                
             }
 
+            /* la fonction preload, permet comme son nom l'indique de préchargé les différents élément du jeu.
+            (audio, assets, spritesheet etc...)
+            */
             function preload(){
+
+                //ici on viens appeler les éléments du jeu en lui définissant une clé permettant de faire le lien entre 
+                //le chemin d'un élément du jeu et le code
                 this.load.image('background','assets/sky.png');	
                 this.load.image('fond','assets/fond.png');
                 this.load.image('etoile','assets/star.png');
                 this.load.image('sol','assets/platform.png');
                 this.load.image('bomb','assets/bomb.png');
+                //comme le spritesheet contient tout les visuels du personnage,
+                // on lui définie un cadre afin de lire correctement l'animation du personnage.
                 this.load.spritesheet('perso','assets/dude.png',{frameWidth: 32, frameHeight: 48});
             }
 
 
-
+            /*la fonction create permet de définir les régles de fonctionnements du monde de jeu.
+            l'ordre de création a son importance, si un élément, par exemple,
+            l'objet "star" est créer avant le background, il sera alors disimuler par ce dernier.*/
             function create(){
+
+                /*créer l'objet backgroud en lui donnant le point d'origine et la clé de l'image.
+                pourquoi 400 et 300 ? par défaut, phaser fixe le point d'origine au centre de l'image. */
                 this.add.image(400,300,'background');
 
+                /*créer les plateformes au sein d'un groupe statique et l'attribue a la variable locale "platforms"*/
                 platforms = this.physics.add.staticGroup();
+                //cette plateforme est aggrandie par 2 via la set scale et raffraichi ce dernier afin de l'afficher correctement 
                 platforms.create(400,568,'sol').setScale(2).refreshBody();
                 platforms.create(600,400,'sol');
                 platforms.create(50,250,'sol');
                 
+                //créer l'objet player et lui applique un rebond lors du collider
                 player = this.physics.add.sprite(100,450,'perso');
                 player.setCollideWorldBounds(true);
                 player.setBounce(0.2);
                 player.body.setGravityY(000);
                 this.physics.add.collider(player,platforms);
                 
+                //attribue a la variable cursors la / les touches appuyé
                 cursors = this.input.keyboard.createCursorKeys(); 
                 
+                /*créer l'animation selon la touche definie dans le key.*/
                 this.anims.create({
                     key:'left',
                     frames: this.anims.generateFrameNumbers('perso', {start: 0, end: 3}),
@@ -80,24 +116,31 @@
                     frameRate: 20
                 });
                 
+                //créer l'objet étoile et le répète 
                 stars = this.physics.add.group({
                     key: 'etoile',
                     repeat:11,
                     setXY: {x:12,y:0,stepX:70}
                 });
-                
+                //définie la collision entre les étoiles et les plateformes
                 this.physics.add.collider(stars,platforms);
+                //lorsque le joueur passe sur un étoile, lance la fonction collectStar
                 this.physics.add.overlap(player,stars,collectStar,null,this);
 
+                //créer l'affichage du score 
                 scoreText = this.add.text(16,16, 'score: 0', {fontSize: '32px', fill:'#000'});
+
+                //créer l'objet bombs et définie ses collisions
                 bombs = this.physics.add.group();
                 this.physics.add.collider(bombs,platforms);
                 this.physics.add.collider(player,bombs, hitBomb, null, this);
             }
 
 
-
+            /*la fonction update est a voir comme une boucle*/
             function update(){
+
+                /*permet de créer la vérification des instances de l'objet cursors*/
                 if(cursors.left.isDown){
                     player.anims.play('left', true);
                     player.setVelocityX(-300);
@@ -116,6 +159,7 @@
                 } 
                 
             }
+
             function hitBomb(player, bomb){
                 this.physics.pause();
                 player.setTint(0xff0000);
