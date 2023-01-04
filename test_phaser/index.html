@@ -56,6 +56,7 @@
                 var scoreText;
                 var bomb;
                 
+                
             }
 
             /* la fonction preload, permet comme son nom l'indique de préchargé les différents élément du jeu.
@@ -140,7 +141,28 @@
             /*la fonction update est a voir comme une boucle*/
             function update(){
 
-                /*permet de créer la vérification des instances de l'objet cursors*/
+                /*switch(cursors.isDown){
+                    case left:
+                        player.anims.play('left', true);
+                        player.setVelocityX(-300);
+                        player.setFlipX(false);
+                        break;
+                    case right:
+                        player.setVelocityX(300);
+                        player.anims.play('left', true);
+                        player.setFlipX(true);
+                        break;
+                    case up:
+                        if (player.body.touching.down){
+                            player.setGravityY(-330);
+                        }
+                        break;
+                    default:
+                        player.anims.play('stop', true);
+                        player.setVelocityX(0);
+                }
+
+                permet de créer la vérification des instances de l'objet cursors*/
                 if(cursors.left.isDown){
                     player.anims.play('left', true);
                     player.setVelocityX(-300);
