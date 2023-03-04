@@ -152,6 +152,9 @@
                 star.disableBody(true,true);
                 this.score += 10;
                 this.scoreText.setText('score: '+this.score);
+                if(this.score == 10){
+                    this.scene.start('scene2');
+                }
                 if(this.stars.countActive(true)===0){
                     this.stars.children.iterate(function(child){
                         child.enableBody(true,child.x,0, true, true);
@@ -160,13 +163,15 @@
                     this.x = (player.x < 400) ? 
                         Phaser.Math.Between(400,800):
                         Phaser.Math.Between(0,400);
-                    this.bomb = bombs.create(x, 16, 'bomb');
+                    this.bomb = this.bombs.create(this.x, 16, 'bomb');
                     this.bomb.setBounce(1);
                     this. bomb.setBounce(1);
                     this.bomb.setCollideWorldBounds(true);
                     this.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
                 }
+                
             }
+            
         };
         
         class Scene2 extends Phaser.Scene{
@@ -206,8 +211,8 @@
 
                 //ici on viens appeler les éléments du jeu en lui définissant une clé permettant de faire le lien entre 
                 //le chemin d'un élément du jeu et le code
-                this.load.image('background','assets/sky.png');	
-                this.load.image('fond','assets/fond2.png');
+                this.load.image('background','assets/sky2.png');	
+                this.load.image('fond','assets/fond.png');
                 this.load.image('etoile','assets/star.png');
                 this.load.image('sol','assets/platform.png');
                 this.load.image('bomb','assets/bomb.png');
@@ -318,18 +323,16 @@
                         child.enableBody(true,child.x,0, true, true);
                     });
                     
-                    this.x = (player.x < 400) ? 
+                    this.x = (this.player.x < 400) ? 
                         Phaser.Math.Between(400,800):
                         Phaser.Math.Between(0,400);
-                    this.bomb = bombs.create(x, 16, 'bomb');
+                    this.bomb = this.bombs.create(this.x, 16, 'bomb');
                     this.bomb.setBounce(1);
                     this. bomb.setBounce(1);
                     this.bomb.setCollideWorldBounds(true);
                     this.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
                 }
-                if(score == 400){
-                    this.scene.start("Scene2");
-                }
+                
             }
         };
 
